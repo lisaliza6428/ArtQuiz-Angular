@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DataService } from '../../core/services/data.service';
 
 @Component({
   selector: 'app-start-page',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StartPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dataService: DataService,
+    public router: Router,
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  action(){
+    this.dataService.setQuizType('artists');
+    this.dataService.getCategoryImages();
+    this.router.navigate(['/categories']);
+  }
+
+  action1(){
+    this.dataService.setQuizType('pictures');
+    this.dataService.getCategoryImages();
+    this.router.navigate(['/categories']);
   }
 
 }

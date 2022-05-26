@@ -1,1 +1,48 @@
-<p>question-page works!</p>
+<div class="question-page">
+  <div class="question-page__top">
+    <a class="question-page__close" href="#/categories">
+      <img class="question-page__close-img" src="/assets/svg/close.svg" alt="">
+    </a>
+
+    <ng-container *ngIf="1">
+      <div class="timer">
+        <div class="timer__line"></div>
+        <div class="timer__line timer__line--colored" id="line"></div>
+      </div>
+      <span class="time" id="time">20.00</span>
+    </ng-container>
+
+  </div>
+
+  <p class="question" id="question">Who is the author of this picture?</p>
+
+
+  <div class="picture-container ">
+    <img class="question-picture" src="/assets/img/10.webp" alt="picture">
+  </div>
+
+
+  <div class="question-dots">
+    <span class="question-dots__dot"></span>
+    <span class="question-dots__dot"></span>
+    <span class="question-dots__dot"></span>
+    <span class="question-dots__dot"></span>
+    <span class="question-dots__dot"></span>
+    <span class="question-dots__dot"></span>
+    <span class="question-dots__dot"></span>
+    <span class="question-dots__dot"></span>
+    <span class="question-dots__dot"></span>
+    <span class="question-dots__dot"></span>
+  </div>
+
+
+
+
+  <div class="question-answers">
+    <button class="button answer correct">1</button>
+    <button class="button answer correct">2</button>
+    <button class="button answer correct">3</button>
+    <button class="button answer correct">4</button>
+  </div>
+
+</div>

@@ -9,18 +9,18 @@
 
   <div class="cards">
 
-    <div class="card">
+    <div class="card" *ngFor="let image of images; let i = index" [id]="i" (click)="checkClick($event, i)">
       <div class="card__top">
-        <div class="card__category">GENRES</div>
-        <a class="card__score " href="#/score">2/10</a>
+        <div class="card__category">{{ genres[i] }}</div>
+        <div class="card__score">2/10</div>
       </div>
-      <a class="card__box" href="#/question">
-        <img class="card__image card__image--grey" src="/assets/img/10.webp" alt="Picture">
-        <div class="card__label ">
+      <div class="card__box">
+        <img class="card__image card__image--grey" src="/assets/img/{{image}}.webp" alt="Picture">
+        <div class="card__label">
           <img class="card__label-image" src="/assets/svg/again.svg">
           Play again
         </div>
-      </a>
+      </div>
     </div>
 
   </div>

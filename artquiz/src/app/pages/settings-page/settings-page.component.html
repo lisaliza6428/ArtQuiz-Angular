@@ -1,1 +1,43 @@
-<p>settings-page works!</p>
+<div class="settings">
+  <div class="settings__controls">
+    <span class="control__back" routerLink="/start"><img class="control__back-arrow" src="/assets/svg/arrow.svg" alt="back"></span>
+    <span class="control__back-link" routerLink="/start">Settings</span>
+  </div>
+  <span class="control__close" routerLink="/start"><img class="control__close-img" src="/assets/svg/close.svg" alt="close"></span>
+</div>
+
+
+<div class="wrapper">
+  <p class="settings__item">Volume:</p>
+  <input class="sound-bar" min="0" max="0" type="range">
+  <div class="sound-bar-bottom">
+    <img src="/assets/svg/sound_off.svg" alt="On">
+    <img src="/assets/svg/sound_on.svg" alt="Off">
+  </div>
+</div>
+
+<div class="wrapper">
+  <p class="settings__item">Time game:</p>
+  <div class="div">
+    <span class="on_off">On</span>
+    <div class="button-switch">
+      <input class="switch" type="checkbox" id="switch_timer">
+      <label class="lbl-off" for="switch_timer">On</label>
+      <label class="lbl-on" for="switch_timer">Off</label>
+    </div>
+  </div>
+
+</div>
+
+<div class="wrapper inactive">
+  <p class="settings__item">Time to answer:</p>
+  <div class="numborber">
+    <button class="btnplus numberbtn" type="button">-</button>
+    <input class="number" type="text" value="15">
+<button class="btnplus numberbtn" type="button">+</button>
+  </div>
+</div>
+
+
+<button class="button default-button">Default</button>
+<button class="button reset-button">Reset Progress</button>
