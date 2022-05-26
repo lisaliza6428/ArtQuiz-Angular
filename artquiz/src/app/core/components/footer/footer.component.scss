@@ -1,0 +1,21 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+ //// padding: 0 20px;
+  align-items: center;
+}
+
+.footer__dev-link {
+  color: #ffbca2;
+}
+
+@media (max-width: 550px) {
+  .footer__dev-link {
+    margin-left: 20px;
+    font-size: 12px;
+    word-wrap: normal;
+    text-align: right;
+  }
+}
+

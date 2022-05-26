@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+body {
+  background-color: black;
+  color: white;
+  //display: flex;
+  //flex-direction: column;
+  font-family: "Montserrat Alternates", sans-serif;
+}
+.container {
+  max-width: 1440px;
+  margin: 20px auto 0 auto;
+  padding: 0 40px;
+}
