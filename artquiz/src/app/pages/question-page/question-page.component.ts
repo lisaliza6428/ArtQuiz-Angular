@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DataModel } from 'src/app/core/models/response';
 import { DataService } from '../../core/services/data.service';
+import { getRandomNumber, shuffleArray } from '../../core/functions';
+import { MatDialog, MatDialogConfig  } from '@angular/material/dialog';
+import { ModalComponent } from '../../core/components/modal/modal.component';
 
 
 
@@ -12,20 +15,14 @@ import { DataService } from '../../core/services/data.service';
 })
 export class QuestionPageComponent implements OnInit {
 
- 
-
   round!: DataModel[];
-
+  variants!: DataModel[];
+  rightAnswer!: DataModel;
   currentIndex = 0;
-
-  htmlStr = `<button class="button answer correct">1</button>
-  <button class="button answer correct">2</button>
-  <button class="button answer correct">3</button>
-  <button class="button answer correct">4</button>`;
-
 
   constructor(
     public dataService: DataService,
+    public matDialog: MatDialog,
   ) {
     this.round = this.dataService.round
   }
@@ -34,12 +31,34 @@ export class QuestionPageComponent implements OnInit {
     this.dataService.roundChange.subscribe(value => {
       this.round = value;
     });
-    console.log('hi');
+    this.rightAnswer = this.round[this.currentIndex];
+    this.generateVariants();
   }
 
-  generateQuestion(){
+  generateVariants() {
+    const dataLength = this.dataService.data.length - 1;
+    let wrongVariants: DataModel[] = [...new Set([])];
+    const wrongVariantsCount = 3;
+    while (wrongVariants.length !== wrongVariantsCount) {
+      let variant;
+      variant = this.dataService.data[getRandomNumber(0, dataLength)];
+      if (+variant.imageNum !== +this.rightAnswer.imageNum && variant.authorEN !== this.rightAnswer.authorEN) {
+        wrongVariants.push(variant);
+      }
+    }
+    const random = shuffleArray([...wrongVariants, this.rightAnswer]);
+    //console.log(random);
+    this.variants = random;
+  }
 
-
-
+  checkAnswer(answer: number) {
+    console.log('check', answer);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.data = {
+      answer: this.rightAnswer,
+      isCorrect: 'correct',
+    };
+    this.matDialog.open(ModalComponent, dialogConfig);
   }
 }

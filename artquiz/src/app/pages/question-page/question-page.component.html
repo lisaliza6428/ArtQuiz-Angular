@@ -1,8 +1,8 @@
 <div class="question-page">
   <div class="question-page__top">
-    <a class="question-page__close" href="#/categories">
+    <span class="question-page__close" routerLink="/start">
       <img class="question-page__close-img" src="/assets/svg/close.svg" alt="">
-    </a>
+    </span>
 
     <ng-container *ngIf="1">
       <div class="timer">
@@ -18,7 +18,7 @@
 
 
   <div class="picture-container ">
-    <img class="question-picture" src="/assets/img/10.webp" alt="picture">
+    <img class="question-picture" src="../../../assets/img/{{rightAnswer.imageNum}}.webp" alt="picture">
   </div>
 
 
@@ -35,14 +35,13 @@
     <span class="question-dots__dot"></span>
   </div>
 
-
-
-
   <div class="question-answers">
-    <button class="button answer correct">1</button>
-    <button class="button answer correct">2</button>
-    <button class="button answer correct">3</button>
-    <button class="button answer correct">4</button>
+    <button 
+      class="button answer"
+      *ngFor="let variant of variants"
+      [id]="variant.imageNum"
+      (click)="checkAnswer(+variant.imageNum)">
+      {{ variant.authorEN }}</button>
   </div>
 
 </div>

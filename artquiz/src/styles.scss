@@ -91,3 +91,13 @@ body {
   margin: 20px auto 0 auto;
   padding: 0 40px;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+mat-dialog-container {
+  border-radius: 20px !important;
+  background-color: #ffffff !important;
+  width: 400px !important;
+  width: 600px !important;
+}
