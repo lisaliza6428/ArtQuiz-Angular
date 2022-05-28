@@ -9,6 +9,7 @@ import { CategoriesPageComponent } from './pages/categories-page/categories-page
 import { QuestionPageComponent } from './pages/question-page/question-page.component';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
 import { DataService } from './core/services/data.service';
+import { QuestionService } from './core/services/question.service';
 import { ScorePageComponent } from './pages/score-page/score-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgMaterialModule } from './ng-material/ng-material.module';
@@ -23,7 +24,6 @@ import { NgMaterialModule } from './ng-material/ng-material.module';
     QuestionPageComponent,
     ErrorPageComponent,
     ScorePageComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -33,6 +33,7 @@ import { NgMaterialModule } from './ng-material/ng-material.module';
   ],
   providers: [
     DataService,
+    QuestionService,
   ],
   bootstrap: [AppComponent],
 })

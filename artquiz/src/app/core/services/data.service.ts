@@ -15,6 +15,8 @@ export class DataService {
 
   data!: DataModel[];
 
+  dataChange: Subject<DataModel[]> = new Subject<DataModel[]>();
+
   round!: DataModel[];
 
   roundChange: Subject<DataModel[]> = new Subject<DataModel[]>();
@@ -29,6 +31,9 @@ export class DataService {
     });
     this.roundChange.subscribe((value) => {
       this.round = value;
+    });
+    this.dataChange.subscribe((value) => {
+      this.data = value;
     });
     this.getData();
    }
@@ -65,7 +70,7 @@ export class DataService {
         categoryIndex * QUESTIONS_COUNT + QUESTIONS_COUNT + 120,
       );
     }
-    console.log(this.round);
+    //console.log(this.round);
     this.roundChange.next(this.round);
   }
 

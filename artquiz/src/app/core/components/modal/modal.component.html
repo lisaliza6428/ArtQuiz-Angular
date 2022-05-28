@@ -1,10 +1,9 @@
-
-  <div class="popup-wrapper" id="modal">
+<div class="popup-wrapper">
   <div class="popup-image">
-      <img class="popup-image__picture" src="../../../../assets/img/{{modalData.answer.imageNum}}.webp" alt="">
-      <img class="popup-image__icon" src="../../../../assets/svg/{{modalData.isCorrect}}-answer.svg" alt="">
-  </div> 
+    <img class="popup-image__picture" src="../../../../assets/img/{{modalData.answer.imageNum}}.webp" alt="">
+    <img class="popup-image__icon" src="../../../../assets/svg/{{modalData.isCorrect}}-answer.svg" alt="">
+  </div>
   <div class="picture-name">{{modalData.answer.authorEN}}</div>
   <div class="picture-info">{{modalData.answer.nameEN}}</div>
-  <button mat-button mat-dialog-close class="button next" id="next-button">Next</button>
+  <button mat-button mat-dialog-close class="button next" (click)="questionService.checkFinish()">Next</button>
 </div>

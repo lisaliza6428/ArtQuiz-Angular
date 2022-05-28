@@ -4,8 +4,8 @@ import { DataService } from '../../core/services/data.service';
 import { getRandomNumber, shuffleArray } from '../../core/functions';
 import { MatDialog, MatDialogConfig  } from '@angular/material/dialog';
 import { ModalComponent } from '../../core/components/modal/modal.component';
-
-
+import { ConfirmModalComponent } from '../../core/components/confirm-modal/confirm-modal.component';
+import { QuestionService } from '../../core/services/question.service';
 
 
 @Component({
@@ -22,43 +22,39 @@ export class QuestionPageComponent implements OnInit {
 
   constructor(
     public dataService: DataService,
+    public questionService: QuestionService,
     public matDialog: MatDialog,
   ) {
-    this.round = this.dataService.round
-  }
+    this.round = this.dataService.round;
+    this.variants = this.questionService.variants;
+    this.currentIndex = this.questionService.currentIndex;
+    this.rightAnswer = this.questionService.rightAnswer;
+   }
 
   ngOnInit(): void {
     this.dataService.roundChange.subscribe(value => {
       this.round = value;
     });
-    this.rightAnswer = this.round[this.currentIndex];
-    this.generateVariants();
+    this.questionService.variantsChange.subscribe(value => {
+      this.variants = value;
+    });
+    this.questionService.currentIndexChange.subscribe(value => {
+      this.currentIndex = value;
+    });
+    this.questionService.rightAnswerChange.subscribe(value => {
+      this.rightAnswer = value;
+    });
   }
 
-  generateVariants() {
-    const dataLength = this.dataService.data.length - 1;
-    let wrongVariants: DataModel[] = [...new Set([])];
-    const wrongVariantsCount = 3;
-    while (wrongVariants.length !== wrongVariantsCount) {
-      let variant;
-      variant = this.dataService.data[getRandomNumber(0, dataLength)];
-      if (+variant.imageNum !== +this.rightAnswer.imageNum && variant.authorEN !== this.rightAnswer.authorEN) {
-        wrongVariants.push(variant);
-      }
-    }
-    const random = shuffleArray([...wrongVariants, this.rightAnswer]);
-    //console.log(random);
-    this.variants = random;
-  }
-
-  checkAnswer(answer: number) {
-    console.log('check', answer);
+  openConfirmModal(){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.data = {
-      answer: this.rightAnswer,
-      isCorrect: 'correct',
+      message: 'Are you sure you want to leave?',
+      actionButtonText: 'Yes, leave',
+      cancelButtonText: 'Cancel',
     };
-    this.matDialog.open(ModalComponent, dialogConfig);
+    this.matDialog.open(ConfirmModalComponent, dialogConfig);
+
   }
 }

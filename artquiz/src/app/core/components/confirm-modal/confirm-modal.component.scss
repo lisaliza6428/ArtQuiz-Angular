@@ -1,0 +1,37 @@
+.dialog {
+  padding: 20px 0;
+  color: black;
+  text-align: center;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dialog__title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.dialog__button {
+  padding: 0;
+  cursor: pointer;
+  width: 180px;
+  height: 50px;
+  margin: 5px;
+  border: 2px solid black;
+  background: none;
+  color: black;
+  border-radius: 60px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 22px;
+  background-color: white;
+  &:hover {
+    color: black;
+    background-color: #ffbca2;
+    transition: 0.5s ease-out;
+    border: 2px solid #ffbca2;
+  }
+}
