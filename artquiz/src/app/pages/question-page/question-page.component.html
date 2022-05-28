@@ -1,8 +1,7 @@
 <div class="question-page">
   <div class="question-page__top">
 
-      <img class="question-page__close-img" src="/assets/svg/close.svg" alt="cross" (click)="openConfirmModal()">
-
+    <img class="question-page__close-img" src="/assets/svg/close.svg" alt="cross" (click)="openConfirmModal()">
 
     <ng-container *ngIf="1">
       <div class="timer">
@@ -16,34 +15,20 @@
 
   <p class="question" id="question">Who is the author of this picture?</p>
 
-
   <div class="picture-container ">
     <img class="question-picture" src="../../../assets/img/{{rightAnswer.imageNum}}.webp" alt="picture">
   </div>
 
-
   <div class="question-dots">
-    <span class="question-dots__dot"></span>
-    <span class="question-dots__dot"></span>
-    <span class="question-dots__dot"></span>
-    <span class="question-dots__dot"></span>
-    <span class="question-dots__dot"></span>
-    <span class="question-dots__dot"></span>
-    <span class="question-dots__dot"></span>
-    <span class="question-dots__dot"></span>
-    <span class="question-dots__dot"></span>
-    <span class="question-dots__dot"></span>
+    <span *ngFor="let answer of roundAnswers; let i = index"
+      [ngStyle]="answer ? {'background-color': 'green'} : i < currentIndex ? {'background-color': 'red'} : null"
+      class="question-dots__dot"></span>
   </div>
 
   <div class="question-answers">
-    <button 
-      class="button answer"
-      *ngFor="let variant of variants"
-      [id]="variant.imageNum"
+    <button class="button answer" *ngFor="let variant of variants" [id]="variant.imageNum"
       (click)="questionService.checkAnswer(+variant.imageNum)">
       {{ variant.authorEN }}</button>
   </div>
 
 </div>
-
-<router-outlet></router-outlet>

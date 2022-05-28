@@ -25,6 +25,8 @@ export class DataService {
 
   imagesChange: Subject<number[]> = new Subject<number[]>();
 
+  answersArray!: number[];
+
   constructor() {
     this.imagesChange.subscribe((value) => {
       this.images = value;
@@ -53,8 +55,8 @@ export class DataService {
   }
 
   async getData(){
-    const responce = await fetch('./assets/data.json');
-    const data = await responce.json();
+    const response = await fetch('./assets/data.json');
+    const data = await response.json();
     this.data = data;
   }
 
@@ -85,4 +87,20 @@ export class DataService {
     const imageNums = new Array(12).fill(start).map((x: number, i) => x + 10*i);
     this.imagesChange.next(imageNums)
   }
+
+  getAnswersArray() {
+    const arr = localStorage.getItem('answersArray');
+    if (arr !== null) return JSON.parse(arr);
+    return new Array(240).fill('0');
+  }
+
+  setAnswersArray(array: number[]) {
+    localStorage.setItem('answersArray', JSON.stringify(array));
+  }
+
+  clearAnswersArray() {
+    localStorage.setItem('answersArray', JSON.stringify(Array(240).fill('0')));
+  }
+
+
 }

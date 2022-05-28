@@ -19,6 +19,7 @@ export class QuestionPageComponent implements OnInit {
   variants!: DataModel[];
   rightAnswer!: DataModel;
   currentIndex = 0;
+  roundAnswers!: number[];
 
   constructor(
     public dataService: DataService,
@@ -29,6 +30,7 @@ export class QuestionPageComponent implements OnInit {
     this.variants = this.questionService.variants;
     this.currentIndex = this.questionService.currentIndex;
     this.rightAnswer = this.questionService.rightAnswer;
+    this.roundAnswers = this.questionService.roundAnswers;
    }
 
   ngOnInit(): void {
@@ -44,6 +46,10 @@ export class QuestionPageComponent implements OnInit {
     this.questionService.rightAnswerChange.subscribe(value => {
       this.rightAnswer = value;
     });
+    this.questionService.roundAnswersChange.subscribe(value => {
+      this.roundAnswers = value;
+    })
+
   }
 
   openConfirmModal(){
@@ -55,6 +61,5 @@ export class QuestionPageComponent implements OnInit {
       cancelButtonText: 'Cancel',
     };
     this.matDialog.open(ConfirmModalComponent, dialogConfig);
-
   }
 }

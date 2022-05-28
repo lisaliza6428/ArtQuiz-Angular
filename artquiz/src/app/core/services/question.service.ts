@@ -20,7 +20,8 @@ export class QuestionService {
   rightAnswerChange: Subject<DataModel> = new Subject<DataModel>();
   currentIndex = 0;
   currentIndexChange: Subject<number> = new Subject<number>();
-  score = 0;
+  roundAnswers: number[] = new Array(10).fill(0);
+  roundAnswersChange: Subject<number[]> = new Subject<number[]>();
 
   constructor(
     public dataService: DataService,
@@ -40,6 +41,9 @@ export class QuestionService {
     });
     this.dataService.roundChange.subscribe((value: DataModel[]) => {
       this.round = value;
+    });
+    this.roundAnswersChange.subscribe((value: number[]) => {
+      this.roundAnswers = value;
     });
   }
 
@@ -64,6 +68,7 @@ export class QuestionService {
 
   public quitQuiz(){
     this.currentIndexChange.next(0);
+    this.roundAnswersChange.next(new Array(10).fill(0));
     this.router.navigate(['/categories'])
   }
 
@@ -75,7 +80,6 @@ export class QuestionService {
       this.currentIndexChange.next(index);
       this.generateVariants();
     }
-
   }
 
   
@@ -83,7 +87,10 @@ export class QuestionService {
     let isCorrect = '';
     if (+this.rightAnswer.imageNum === answer) {
       isCorrect = 'correct';
-      this.score += 1;
+      this.roundAnswers[this.currentIndex] = 1;
+      this.updateAnswersArray(1);
+      console.log(this.roundAnswers);
+      this.roundAnswersChange.next(this.roundAnswers);
     } else {
       isCorrect = 'wrong';
     }
@@ -100,12 +107,19 @@ export class QuestionService {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.data = {
-      score: this.score,
+      score: this.roundAnswers.reduce((x, y) => x + y, 0),
     };
 
     console.log('finish');
     this.matDialog.open(FinishModalComponent, dialogConfig);
     this.currentIndexChange.next(0);
-    this.score = 0;
+    this.roundAnswers = new Array(10).fill(0);
+    this.roundAnswersChange.next(this.roundAnswers);
   }
+
+  updateAnswersArray(answer: number) {
+    const arr = this.dataService.getAnswersArray();
+    arr[this.round[this.currentIndex].imageNum] = `${answer}`;
+    this.dataService.setAnswersArray(arr);
+  } 
 }
