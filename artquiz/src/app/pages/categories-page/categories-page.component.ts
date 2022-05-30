@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../core/services/data.service';
-import { GENRES } from '../../core/consts';
+import { GENRES, QUESTIONS_COUNT } from '../../core/consts';
 import { Router } from '@angular/router';
 import { QuestionService } from '../../core/services/question.service';
 
@@ -14,6 +14,10 @@ export class CategoriesPageComponent implements OnInit {
   genres = GENRES;
 
   images!: number[];
+
+  none = 'none';
+  colored = 'card__image--grey';
+
 
   constructor(
     public dataService: DataService,
@@ -41,5 +45,18 @@ export class CategoriesPageComponent implements OnInit {
       this.dataService.getRoundData(id);
       this.router.navigate(['/score'])
     }
+  }
+
+  getScore(imageNum: number){
+    const arr = this.dataService.getAnswersArray();
+    const results = arr.slice(imageNum, imageNum + QUESTIONS_COUNT).reduce((x: number, y: number)=> +x + +y, 0);
+    if (results) {
+      this.none = '';
+      this.colored = '';
+      return `${results}/10`
+    }
+    this.none = 'none';
+    this.colored = 'card__image--grey';
+    return '';
   }
 }

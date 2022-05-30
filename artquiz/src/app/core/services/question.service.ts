@@ -13,6 +13,7 @@ import { ModalComponent } from '../components/modal/modal.component';
 })
 export class QuestionService {
 
+  timer = false;
   round!: DataModel[];
   variants!: DataModel[];
   variantsChange: Subject<DataModel[]> = new Subject<DataModel[]>();
@@ -54,7 +55,6 @@ export class QuestionService {
     let wrongVariants: DataModel[] = [...new Set([])];
     const wrongVariantsCount = 3;
     while (wrongVariants.length !== wrongVariantsCount) {
-      // console.log(this.rightAnswer);
       let variant;
       variant = this.dataService.data[getRandomNumber(0, dataLength)];
       if (+variant.imageNum !== +this.rightAnswer.imageNum && variant.authorEN !== this.rightAnswer.authorEN) {
@@ -62,7 +62,6 @@ export class QuestionService {
       }
     }
     const random = shuffleArray([...wrongVariants, this.rightAnswer]);
-    this.variants = random;
     this.variantsChange.next(random);
   }
 
@@ -82,17 +81,16 @@ export class QuestionService {
     }
   }
 
-  
   checkAnswer(answer: number) {
     let isCorrect = '';
     if (+this.rightAnswer.imageNum === answer) {
       isCorrect = 'correct';
+      this.getSound('correct');
       this.roundAnswers[this.currentIndex] = 1;
-      this.updateAnswersArray(1);
-      console.log(this.roundAnswers);
       this.roundAnswersChange.next(this.roundAnswers);
     } else {
       isCorrect = 'wrong';
+      this.getSound('wrong');
     }
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
@@ -104,22 +102,34 @@ export class QuestionService {
   }
 
   finishRoundActions(){
+    this.updateAnswersArray();
+    this.getSound('finish');
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.data = {
       score: this.roundAnswers.reduce((x, y) => x + y, 0),
     };
-
-    console.log('finish');
     this.matDialog.open(FinishModalComponent, dialogConfig);
     this.currentIndexChange.next(0);
     this.roundAnswers = new Array(10).fill(0);
     this.roundAnswersChange.next(this.roundAnswers);
   }
 
-  updateAnswersArray(answer: number) {
+  updateAnswersArray() {
     const arr = this.dataService.getAnswersArray();
-    arr[this.round[this.currentIndex].imageNum] = `${answer}`;
+    this.round.forEach((roundItem, index) => {
+      let imageNum = roundItem.imageNum;
+      let answer = this.roundAnswers[index];
+      arr[imageNum] = `${answer}`;
+    })
     this.dataService.setAnswersArray(arr);
-  } 
+  }
+  
+  getSound(answer: string){
+    const audio = new Audio();
+    //this.audio.volume = localStorageUtil.getSettings().sound / 100;
+    audio.volume = 0.2;
+    audio.src = `../../../assets/audio/${answer}.mp3`;
+    audio.play();
+  }
 }

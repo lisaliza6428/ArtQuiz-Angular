@@ -12,4 +12,10 @@ export class ScorePageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  showDescription(e: Event){
+    console.log(e.target);
+    (e.target as HTMLElement).classList.toggle('none');
+
+  }
+
 }

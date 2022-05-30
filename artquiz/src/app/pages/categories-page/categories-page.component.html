@@ -9,14 +9,14 @@
 
   <div class="cards">
 
-    <div class="card" *ngFor="let image of images; let i = index" [id]="i" (click)="checkClick($event, i)">
+    <div class="card" *ngFor="let imageNum of images; let i = index" [id]="i" (click)="checkClick($event, i)">
       <div class="card__top">
         <div class="card__category">{{ genres[i] }}</div>
-        <div class="card__score">2/10</div>
+        <div class="card__score">{{ getScore(imageNum)}}</div>
       </div>
       <div class="card__box">
-        <img class="card__image card__image--grey" src="/assets/img/{{image}}.webp" alt="Picture">
-        <div class="card__label">
+        <img class="card__image {{colored}}" src="/assets/img/{{imageNum}}.webp" alt="Picture">
+        <div class="card__label {{none}}">
           <img class="card__label-image" src="/assets/svg/again.svg">
           Play again
         </div>
