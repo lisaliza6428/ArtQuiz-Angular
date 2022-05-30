@@ -13,7 +13,8 @@ import { ModalComponent } from '../components/modal/modal.component';
 })
 export class QuestionService {
 
-  timer = false;
+  timer = true;
+  timerChange: Subject<boolean> = new Subject<boolean>();
   round!: DataModel[];
   variants!: DataModel[];
   variantsChange: Subject<DataModel[]> = new Subject<DataModel[]>();
@@ -45,6 +46,9 @@ export class QuestionService {
     });
     this.roundAnswersChange.subscribe((value: number[]) => {
       this.roundAnswers = value;
+    });
+    this.timerChange.subscribe((value: boolean) => {
+      this.timer = value;
     });
   }
 
@@ -127,8 +131,8 @@ export class QuestionService {
   
   getSound(answer: string){
     const audio = new Audio();
-    //this.audio.volume = localStorageUtil.getSettings().sound / 100;
-    audio.volume = 0.2;
+    const settings = this.dataService.getSettings();
+    audio.volume = settings.volume;
     audio.src = `../../../assets/audio/${answer}.mp3`;
     audio.play();
   }

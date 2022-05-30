@@ -27,6 +27,12 @@ export class DataService {
 
   answersArray!: number[];
 
+  defaultSettings = {
+    volume: 0.2,
+    timer: true,
+    timerValue: 20,
+  }
+
   constructor() {
     this.imagesChange.subscribe((value) => {
       this.images = value;
@@ -100,6 +106,26 @@ export class DataService {
 
   clearAnswersArray() {
     localStorage.setItem('answersArray', JSON.stringify(Array(240).fill('0')));
+  }
+
+  getSettings() {
+    const settings = localStorage.getItem('settings');
+    if (settings !== null) return JSON.parse(settings);
+    return this.defaultSettings;
+  }
+
+  setSettings(settings: any) {
+    localStorage.setItem('settings', JSON.stringify(settings));
+  }
+
+  setDefaultSettings() {
+    localStorage.setItem('settings', JSON.stringify(this.defaultSettings));
+  }
+
+  updateSettings(field: string, value: any) {
+    const settings = this.getSettings();
+    settings[field] = value;
+    this.setSettings(settings);
   }
 
 

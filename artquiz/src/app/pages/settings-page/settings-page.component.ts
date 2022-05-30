@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { MatSliderChange } from '@angular/material/slider';
+import { DataService } from '../../core/services/data.service';
+import { QuestionService } from '../../core/services/question.service';
 
 @Component({
   selector: 'app-settings-page',
@@ -7,9 +10,53 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsPageComponent implements OnInit {
 
-  constructor() { }
+  volumeValue!: number;
+
+  constructor(
+    public dataService: DataService,
+    public questionService: QuestionService,
+  ) { }
 
   ngOnInit(): void {
+    this.volumeValue = this.dataService.getSettings().volume;
+  }
+
+  handleVolumeChange(event: MatSliderChange){
+    if (event.value != null) {
+      this.dataService.updateSettings('volume', event.value )
+      this.questionService.getSound('correct');
+    }
+  }
+
+  handleTimerChange(event: Event) {
+    console.log((event.target as HTMLInputElement).checked);
+    const isChecked = (event.target as HTMLInputElement).checked;
+    isChecked ? this.questionService.timerChange.next(true) : this.questionService.timerChange.next(false);
+  }
+
+  j =1;
+
+  minusButtonAction() {
+    let seconds = this.dataService.getSettings().timerValue;
+    if (+seconds > 5) {
+      seconds = +seconds - 5;
+      this.dataService.updateSettings('timerValue', seconds);
+    }
+  }
+
+  plusButtonAction() {
+    let seconds = this.dataService.getSettings().timerValue;
+    if (+seconds < 30) {
+      seconds = +seconds + 5;
+      this.dataService.updateSettings('timerValue', seconds);
+    }
+    
+  }
+
+  defaultButtonAction() {
+    this.dataService.setDefaultSettings();
+    this.questionService.timerChange.next(true);
+
   }
 
 }

@@ -13,6 +13,7 @@ import { QuestionService } from './core/services/question.service';
 import { ScorePageComponent } from './pages/score-page/score-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgMaterialModule } from './ng-material/ng-material.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { NgMaterialModule } from './ng-material/ng-material.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     NgMaterialModule,
+    FormsModule,
   ],
   providers: [
     DataService,
