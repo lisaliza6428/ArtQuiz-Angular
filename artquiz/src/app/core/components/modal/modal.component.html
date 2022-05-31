@@ -1,19 +1,29 @@
-<div class="popup-wrapper" *ngIf="modalData.question">
+<div class="popup-wrapper">
   <div class="popup-image">
-    <img class="popup-image__picture" src="../../../../assets/img/{{modalData.answer.imageNum}}.webp" alt="">
-    <img class="popup-image__icon" src="../../../../assets/svg/{{modalData.isCorrect}}-answer.svg" alt="">
+    <img 
+      class="popup-image__picture"
+      src="../../../../assets/img/{{modalData.answer.imageNum}}.webp"
+      alt="picture">
+    <img
+      class="popup-image__icon"
+      *ngIf="modalData.question"
+      src="../../../../assets/svg/{{modalData.isCorrect}}-answer.svg"
+      alt="picture">
   </div>
-  <div class="picture-name">{{modalData.answer.authorEN}}</div>
+  <h3 class="picture-name">{{modalData.answer.authorEN}}</h3>
   <div class="picture-info">{{modalData.answer.nameEN}}</div>
-  <button mat-button mat-dialog-close class="button next" (click)="questionService.checkFinish()">Next</button>
-</div>
-
-
-<div class="popup-wrapper" *ngIf="modalData.gallery">
-  <div class="popup-image">
-    <img class="popup-image__picture" src="../../../../assets/img/{{modalData.answer.imageNum}}.webp" alt="">
-  </div>
-  <div class="picture-name">{{modalData.answer.authorEN}}</div>
-  <div class="picture-info">{{modalData.answer.nameEN}}</div>
-  <button mat-button mat-dialog-close class="button next">Close</button>
+  <div class="picture-info">{{modalData.answer.year}}</div>
+  <button
+    class="button next"
+    *ngIf="modalData.question"
+    mat-button mat-dialog-close 
+    (click)="questionService.checkFinish()">
+      Next
+  </button>
+  <button
+    class="button next"
+    *ngIf="modalData.gallery"
+    mat-button mat-dialog-close>
+      Close
+  </button>
 </div>

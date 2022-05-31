@@ -16,6 +16,7 @@ import { NgMaterialModule } from './ng-material/ng-material.module';
 import { FormsModule } from '@angular/forms';
 import { GalleryPageComponent } from './pages/gallery-page/gallery-page.component';
 import { PictureStyleDirective } from './core/directives/picture-style.directive';
+import { HeaderComponent } from './core/components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { PictureStyleDirective } from './core/directives/picture-style.directive
     ScorePageComponent,
     GalleryPageComponent,
     PictureStyleDirective,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
