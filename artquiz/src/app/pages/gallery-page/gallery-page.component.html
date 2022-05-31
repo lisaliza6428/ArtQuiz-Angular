@@ -1,14 +1,37 @@
 <app-header currentPage="Gallery"></app-header>
 <div class="wrapper">
-  <!-- <button (click)="change()">How many</button> -->
-  <pagination-controls
-  class="custom-pagination"
-    [maxSize]="5"
-    [previousLabel]="''"
-    [nextLabel]="''"
-    (pageChange)="currentPage = $event"
-    align="center">
-  </pagination-controls>
+  
+ 
+
+
+  <div class="controls">
+    <select class="select__count" name="" id="" (change)="change($event)"> Show
+      <option value="5">5</option>
+      <option value="10" selected>10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+      <option value="25">25</option>
+      <option value="30">30</option>
+    </select>
+
+    <select class="select__sort" name="" id=""> Sort
+      <option value="author">Author</option>
+      <option value="painting">Picture</option>
+      <option value="year">Year</option>
+    </select>
+
+    <pagination-controls
+    class="custom-pagination"
+      [maxSize]="7"
+      [previousLabel]="''"
+      [nextLabel]="''"
+      (pageChange)="currentPage = $event"
+      align="center">
+    </pagination-controls>
+
+    <input class="search" type="text" placeholder="Enter a name of painter or picture">
+  </div>
+
   <div class="cards">
     <div class="picture" *ngFor="let picture of dataService.data | paginate: { itemsPerPage, currentPage }">
       <img class="picture__img" [appPictureStyle]="picture.imageNum" (click)="showDescription(picture)"

@@ -36,7 +36,7 @@ export class GalleryPageComponent implements OnInit {
 
   showDescription(picture: DataModel){
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
+    dialogConfig.disableClose = false;
     dialogConfig.data = {
       question: false,
       gallery: true,
@@ -46,8 +46,9 @@ export class GalleryPageComponent implements OnInit {
 
   }
 
-  change(){
-    this.itemsPerPage = 20;
+  change(e: Event){
+    const value = (e.target as HTMLSelectElement).value
+    this.itemsPerPage = +value;
   }
 
 }

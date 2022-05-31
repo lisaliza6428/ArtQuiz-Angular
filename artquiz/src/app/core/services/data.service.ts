@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { DataModel } from '../models/response';
 import { Subject } from 'rxjs';
 import { QUESTIONS_COUNT } from '../consts';
+import { shuffleArray } from '../functions';
 
 
 
@@ -78,7 +79,7 @@ export class DataService {
         categoryIndex * QUESTIONS_COUNT + QUESTIONS_COUNT + 120,
       );
     }
-    //console.log(this.round);
+    this.round = shuffleArray(this.round);
     this.roundChange.next(this.round);
   }
 

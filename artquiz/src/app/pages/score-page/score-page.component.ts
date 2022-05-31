@@ -21,12 +21,11 @@ export class ScorePageComponent implements OnInit {
 
   showDescription(picture: DataModel){
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
+    dialogConfig.disableClose = false;
     dialogConfig.data = {
       question: false,
       gallery: true,
       answer: picture,
-      //isCorrect: isCorrect,
     };
     this.matDialog.open(ModalComponent, dialogConfig);
 
