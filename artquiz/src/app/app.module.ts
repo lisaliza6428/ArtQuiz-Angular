@@ -14,6 +14,8 @@ import { ScorePageComponent } from './pages/score-page/score-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgMaterialModule } from './ng-material/ng-material.module';
 import { FormsModule } from '@angular/forms';
+import { GalleryPageComponent } from './pages/gallery-page/gallery-page.component';
+import { PictureStyleDirective } from './core/directives/picture-style.directive';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { FormsModule } from '@angular/forms';
     QuestionPageComponent,
     ErrorPageComponent,
     ScorePageComponent,
+    GalleryPageComponent,
+    PictureStyleDirective,
   ],
   imports: [
     BrowserModule,

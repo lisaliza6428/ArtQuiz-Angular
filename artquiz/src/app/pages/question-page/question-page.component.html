@@ -8,7 +8,7 @@
         <div class="timer__line"></div>
         <div class="timer__line timer__line--colored" id="line"></div>
       </div>
-      <span class="time" id="time">20.00</span>
+      <span class="time" id="time">00:{{dataService.getSettings().timerValue}}</span>
     </ng-container>
 
   </div>
@@ -22,7 +22,7 @@
 
   <div class="picture-container pictures-container" *ngIf="dataService.quiz === 'pictures'">
     <div class="image-wrapper" *ngFor="let variant of questionService.variants" [id]="variant.imageNum" 
-    (click)="questionService.checkAnswer(+variant.imageNum)">
+    (click)="questionService.checkAnswer($event, +variant.imageNum)">
       <img class="image-wrapper__picture" src="../../../assets/img/{{variant.imageNum}}.webp" alt="picture">
       <div class="image-wrapper__bg"></div>
     </div>
@@ -36,7 +36,7 @@
 
   <div class="question-answers" *ngIf="dataService.quiz === 'artists'">
     <button class="button answer" *ngFor="let variant of questionService.variants" [id]="variant.imageNum"
-      (click)="questionService.checkAnswer(+variant.imageNum)">
+      (click)="questionService.checkAnswer($event, +variant.imageNum)">
       {{ variant.authorEN }}</button>
   </div>
 

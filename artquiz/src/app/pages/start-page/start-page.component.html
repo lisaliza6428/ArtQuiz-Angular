@@ -1,8 +1,9 @@
 <div class="container">
     <div class="start-page">
         <img class="start-page__title" src="/assets/svg/title.svg" alt="Art Quiz">
-        <span class="start-page__button" (click)="action()">Artists quiz</span>
-        <span class="start-page__button" (click)="action1()">Pictures quiz</span>
+        <span class="start-page__button" (click)="openGallery()">Gallery</span>
+        <span class="start-page__button" (click)="openArtistsQuiz()">Artists quiz</span>
+        <span class="start-page__button" (click)="openPicturesQuiz()">Pictures quiz</span>
         <div class="settings-wrapper">
           <a class="settings__link" routerLink="/settings">
             <img class="settings__link-img" src="/assets/svg/settings.svg" alt="Settings">

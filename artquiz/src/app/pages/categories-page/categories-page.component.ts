@@ -16,21 +16,17 @@ export class CategoriesPageComponent implements OnInit {
   images!: number[];
 
   none = 'none';
-  colored = 'card__image--grey';
-
 
   constructor(
     public dataService: DataService,
     public router: Router,
     public questionService: QuestionService,
   ) {
-    this.images = dataService.images;
+
   }
 
   ngOnInit(): void {
-    this.dataService.imagesChange.subscribe(value => {
-      this.images = value;
-    });
+
   }
 
   checkClick(e: Event, id: number){
@@ -52,11 +48,9 @@ export class CategoriesPageComponent implements OnInit {
     const results = arr.slice(imageNum, imageNum + QUESTIONS_COUNT).reduce((x: number, y: number)=> +x + +y, 0);
     if (results) {
       this.none = '';
-      this.colored = '';
       return `${results}/10`
     }
     this.none = 'none';
-    this.colored = 'card__image--grey';
     return '';
   }
 }

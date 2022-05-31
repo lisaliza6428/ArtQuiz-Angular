@@ -6,13 +6,7 @@
 <h3 class="score-title">score</h3>
 <div class="score-note">Click the picture to see details</div>
 <div class="results-container">
-  <div class="picture">
-    <img class="picture__img ${grey}" src="../../../assets/img/10.webp" alt="Picture">
-    <div class="picture__description none" (click)="showDescription($event)">
-      <p>authorEN}</p>
-      <p>nameEN}</p>
-      <p>year}</p>
-    </div>
+  <div class="picture" *ngFor="let picture of dataService.round" (click)="showDescription(picture)">
+    <img class="picture__img" [appPictureStyle]="picture.imageNum" src="../../../assets/img/{{picture.imageNum}}.webp" alt="Picture">
   </div>
- 
 </div>

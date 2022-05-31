@@ -17,13 +17,17 @@ export class StartPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  action(){
+  openGallery() {
+    this.router.navigate(['/gallery']);
+  }
+
+  openArtistsQuiz() {
     this.dataService.setQuizType('artists');
     this.dataService.getCategoryImages();
     this.router.navigate(['/categories']);
   }
 
-  action1(){
+  openPicturesQuiz() {
     this.dataService.setQuizType('pictures');
     this.dataService.getCategoryImages();
     this.router.navigate(['/categories']);

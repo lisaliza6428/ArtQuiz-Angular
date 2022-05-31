@@ -85,20 +85,25 @@ export class QuestionService {
     }
   }
 
-  checkAnswer(answer: number) {
+  checkAnswer(e: Event, answer: number) {
+
     let isCorrect = '';
     if (+this.rightAnswer.imageNum === answer) {
+      (e.target as HTMLElement).classList.add('correct');
       isCorrect = 'correct';
       this.getSound('correct');
       this.roundAnswers[this.currentIndex] = 1;
       this.roundAnswersChange.next(this.roundAnswers);
     } else {
+      (e.target as HTMLElement).classList.add('wrong');
       isCorrect = 'wrong';
       this.getSound('wrong');
     }
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.data = {
+      question: true,
+      gallery: false,
       answer: this.rightAnswer,
       isCorrect: isCorrect,
     };
