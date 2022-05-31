@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { GalleryPageComponent } from './pages/gallery-page/gallery-page.component';
 import { PictureStyleDirective } from './core/directives/picture-style.directive';
 import { HeaderComponent } from './core/components/header/header.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { HeaderComponent } from './core/components/header/header.component';
     BrowserAnimationsModule,
     NgMaterialModule,
     FormsModule,
+    NgxPaginationModule,
   ],
   providers: [
     DataService,

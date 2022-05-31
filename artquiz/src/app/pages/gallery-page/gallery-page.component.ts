@@ -14,6 +14,12 @@ export class GalleryPageComponent implements OnInit {
 
   none = 'none';
 
+  currentPage = 1;
+
+  itemsPerPage = 10;
+
+
+
   constructor(
     public dataService: DataService,
     public questionService: QuestionService,
@@ -28,20 +34,20 @@ export class GalleryPageComponent implements OnInit {
 
 
 
-  showDescription(n: DataModel){
-    console.log(n);
-    //(e.target as HTMLElement).classList.toggle('none');
-
+  showDescription(picture: DataModel){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.data = {
       question: false,
       gallery: true,
-      answer: n,
-      //isCorrect: isCorrect,
+      answer: picture,
     };
     this.matDialog.open(ModalComponent, dialogConfig);
 
+  }
+
+  change(){
+    this.itemsPerPage = 20;
   }
 
 }

@@ -1,13 +1,18 @@
 <app-header currentPage="Gallery"></app-header>
-<h3 class="quiz-title"></h3>
-<div class="categories-container">
-  <p>Показывать по</p>
-  <p>Сортировать</p>
-
+<div class="wrapper">
+  <!-- <button (click)="change()">How many</button> -->
+  <pagination-controls
+  class="custom-pagination"
+    [maxSize]="5"
+    [previousLabel]="''"
+    [nextLabel]="''"
+    (pageChange)="currentPage = $event"
+    align="center">
+  </pagination-controls>
   <div class="cards">
-    <div class="picture" *ngFor="let picture of dataService.data">
-      <img class="picture__img" [appPictureStyle]="picture.imageNum" (click)="showDescription(picture)" src="../../../assets/img/{{picture.imageNum}}.webp" alt="Picture">
+    <div class="picture" *ngFor="let picture of dataService.data | paginate: { itemsPerPage, currentPage }">
+      <img class="picture__img" [appPictureStyle]="picture.imageNum" (click)="showDescription(picture)"
+        src="../../../assets/img/{{picture.imageNum}}.webp" alt="Picture">
     </div>
   </div>
-
 </div>

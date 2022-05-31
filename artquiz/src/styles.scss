@@ -81,9 +81,9 @@ select {
 
 body {
   background-color: black;
-  color: white;
-  //display: flex;
-  //flex-direction: column;
+  color: #fefefe;
+  display: flex;
+  flex-direction: column;
   font-family: "Montserrat Alternates", sans-serif;
 }
 .container {
@@ -120,14 +120,56 @@ mat-dialog-container {
   width: 22px;
   background-color: white !important;
   bottom: -16px;
-  //right: -10px;
   transform: scale(1) !important;
 }
 .cdk-focused  .mat-slider-thumb{
   transform: scale(1) !important;
-
 }
 
 .mat-slider-min-value:not(.mat-slider-thumb-label-showing) .mat-slider-thumb {
   background-color: grey !important;
+}
+
+//pagination
+.ngx-pagination a{
+  background-color: black !important;
+  color: white !important;
+  border: 2px solid white;
+  border-radius: 5px !important;
+  margin: 5px;
+  &:hover {
+    border: 2px solid #ffbca2;
+  }
+  width: 45px !important;
+} 
+
+.ngx-pagination .current {
+  background: #ffbca2 !important;
+  color: black !important;
+  border: 2px solid #ffbca2;
+  border-radius: 5px !important;
+  margin: 5px;
+  width: 45px !important;
+}
+
+.ngx-pagination .disabled {
+  color: #cacaca !important;
+  border: 2px solid grey;
+  border-radius: 5px !important;
+  margin: 5px;
+  width: 45px !important;
+}
+
+.ngx-pagination .pagination-previous a::before,
+.ngx-pagination .pagination-previous.disabled::before {
+  content: "<<" !important;
+  display: inline-block !important;
+  margin: 0rem !important;
+}
+
+.ngx-pagination .pagination-next a::after,
+.ngx-pagination .pagination-next.disabled::after {
+  content: ">>" !important;
+  display: inline-block !important;
+  margin: 0rem !important;
 }
