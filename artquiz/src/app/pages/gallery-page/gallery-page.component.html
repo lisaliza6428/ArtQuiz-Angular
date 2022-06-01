@@ -12,30 +12,42 @@
       <option value="20">20</option>
       <option value="25">25</option>
       <option value="30">30</option>
+      <option value="35">35</option>
+      <option value="40">40</option>
+      <option value="45">45</option>
+      <option value="50">50</option>
     </select>
 
-    <select class="select__sort" name="" id=""> Sort
-      <option value="author">Author</option>
-      <option value="painting">Picture</option>
-      <option value="year">Year</option>
+    <select class="select__sort" name="" id="" (change)="sortAuthor($event)"> Sort
+      <option value="authorAZ" selected>Author (A-Z)</option>
+      <option value="authorZA">Author (Z-A)</option>
+      <option value="pictureAZ">Picture (A-Z)</option>
+      <option value="pictureZA">Picture (Z-A)</option>
+      <option value="yearASC">Year (ascending)</option>
+      <option value="yearDESC">Year (descending)</option>
     </select>
 
     <pagination-controls
     class="custom-pagination"
-      [maxSize]="7"
+      [maxSize]="5"
       [previousLabel]="''"
       [nextLabel]="''"
       (pageChange)="currentPage = $event"
       align="center">
     </pagination-controls>
 
-    <input class="search" type="text" placeholder="Enter a name of painter or picture">
+    <input class="search" type="text" placeholder="Search..." [(ngModel)]="searchValue"(input)="show()">
   </div>
 
   <div class="cards">
-    <div class="picture" *ngFor="let picture of dataService.data | paginate: { itemsPerPage, currentPage }">
+    <ng-container *ngIf="( dataService.data | search: searchValue) as result">
+      <p class="message" *ngIf="result.length === 0">Not found</p>  
+    </ng-container>
+    <div class="picture" *ngFor="let picture of dataService.data | search: searchValue  | sort: sortValue | paginate: { itemsPerPage, currentPage }  ">
       <img class="picture__img" [appPictureStyle]="picture.imageNum" (click)="showDescription(picture)"
         src="../../../assets/img/{{picture.imageNum}}.webp" alt="Picture">
     </div>
   </div>
 </div>
+
+

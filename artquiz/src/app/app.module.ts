@@ -18,6 +18,8 @@ import { GalleryPageComponent } from './pages/gallery-page/gallery-page.componen
 import { PictureStyleDirective } from './core/directives/picture-style.directive';
 import { HeaderComponent } from './core/components/header/header.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { SortPipe } from './core/pipes/sort.pipe';
+import { SearchPipe } from './core/pipes/search.pipe';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     GalleryPageComponent,
     PictureStyleDirective,
     HeaderComponent,
+    SortPipe,
+    SearchPipe,
   ],
   imports: [
     BrowserModule,

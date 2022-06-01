@@ -18,20 +18,22 @@ export class GalleryPageComponent implements OnInit {
 
   itemsPerPage = 10;
 
+  sortValue = 'authorAZ';
 
+  searchValue = '';
 
   constructor(
     public dataService: DataService,
     public questionService: QuestionService,
     public matDialog: MatDialog,
-  ) {
-
-  }
+  ) { }
 
   ngOnInit(): void {
 
   }
-
+show(){
+  console.log(this.searchValue)
+}
 
 
   showDescription(picture: DataModel){
@@ -49,6 +51,11 @@ export class GalleryPageComponent implements OnInit {
   change(e: Event){
     const value = (e.target as HTMLSelectElement).value
     this.itemsPerPage = +value;
+  }
+
+  sortAuthor(e: Event){
+    const value = (e.target as HTMLSelectElement).value
+    this.sortValue = value;
   }
 
 }
