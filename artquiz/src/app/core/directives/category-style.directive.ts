@@ -1,12 +1,12 @@
 import { Directive, ElementRef, Input, Renderer2, OnInit   } from '@angular/core';
 import { DataService } from '../services/data.service';
+import { QUESTIONS_COUNT } from '../consts';
 
 @Directive({
-  selector: '[appPictureStyle]'
+  selector: '[appCategoryStyle]'
 })
-export class PictureStyleDirective {
-  @Input('appPictureStyle') imageNum: any;
-
+export class CategoryStyleDirective {
+  @Input('appCategoryStyle') imageNum: any;
 
   constructor(
     private elementRef: ElementRef,
@@ -16,8 +16,8 @@ export class PictureStyleDirective {
 
   ngOnInit() {
     const answers = this.dataService.getAnswersArray();
-    const answer = +answers[this.imageNum];
-    if (answer !== 1) {
+    const score = +answers.slice(this.imageNum, this.imageNum + QUESTIONS_COUNT).reduce((x: number, y: number)=> +x + +y, 0);
+    if (!score) {
       this.render.setStyle(this.elementRef.nativeElement, 'filter', 'grayscale(100%)');
     }
   }

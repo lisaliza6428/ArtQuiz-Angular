@@ -44,7 +44,7 @@
       <p class="message" *ngIf="result.length === 0">Not found</p>  
     </ng-container>
     <div class="picture" *ngFor="let picture of dataService.data | search: searchValue  | sort: sortValue | paginate: { itemsPerPage, currentPage }  ">
-      <img class="picture__img" [appPictureStyle]="picture.imageNum" (click)="showDescription(picture)"
+      <img class="picture__img" (click)="showDescription(picture)"
         src="../../../assets/img/{{picture.imageNum}}.webp" alt="Picture">
     </div>
   </div>

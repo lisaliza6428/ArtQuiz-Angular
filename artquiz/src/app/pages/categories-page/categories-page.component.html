@@ -1,26 +1,19 @@
 <app-header currentPage="Categories"></app-header>
 <h3 class="quiz-title"></h3>
 <div class="categories-container">
-
-
   <div class="cards">
-
     <div class="card" *ngFor="let imageNum of dataService.images; let i = index" [id]="i" (click)="checkClick($event, i)">
       <div class="card__top">
         <div class="card__category">{{ genres[i] }}</div>
         <div class="card__score">{{ getScore(imageNum)}}</div>
       </div>
       <div class="card__box">
-        <img class="card__image" [appPictureStyle]="imageNum" src="/assets/img/{{imageNum}}.webp" alt="Picture">
+        <img class="card__image" [appCategoryStyle]="imageNum" src="/assets/img/{{imageNum}}.webp" alt="Picture">
         <div class="card__label {{none}}">
           <img class="card__label-image" src="/assets/svg/again.svg">
           Play again
         </div>
       </div>
     </div>
-
   </div>
-
-
-
 </div>

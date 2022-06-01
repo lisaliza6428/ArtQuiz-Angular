@@ -20,6 +20,7 @@ import { HeaderComponent } from './core/components/header/header.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SortPipe } from './core/pipes/sort.pipe';
 import { SearchPipe } from './core/pipes/search.pipe';
+import { CategoryStyleDirective } from './core/directives/category-style.directive';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { SearchPipe } from './core/pipes/search.pipe';
     HeaderComponent,
     SortPipe,
     SearchPipe,
+    CategoryStyleDirective,
   ],
   imports: [
     BrowserModule,
