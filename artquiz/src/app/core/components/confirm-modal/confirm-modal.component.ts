@@ -17,4 +17,11 @@ export class ConfirmModalComponent {
     public questionService: QuestionService,
   ) { }
 
+  cancelAction() {
+    if (this.questionService.timer) {
+      this.questionService.startTimer(this.modalData.timerValue)
+    }
+  }
+
+
 }

@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnInit, OnDestroy, OnChanges, ChangeDetectionStrategy } from '@angular/core';
+import { Component, AfterViewInit, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { DataModel } from 'src/app/core/models/response';
 import { DataService } from '../../core/services/data.service';
 import { getRandomNumber, shuffleArray } from '../../core/functions';
@@ -11,48 +11,29 @@ import { QuestionService } from '../../core/services/question.service';
   selector: 'app-question-page',
   templateUrl: './question-page.component.html',
   styleUrls: ['./question-page.component.scss'],
-  //changeDetection: ChangeDetectionStrategy.OnPush,
   
 })
-export class QuestionPageComponent implements AfterViewInit, OnInit, OnDestroy, OnChanges {
+export class QuestionPageComponent{
 
   constructor(
     public dataService: DataService,
     public questionService: QuestionService,
     public matDialog: MatDialog,
-  ) {
-    console.log('constructor');
+  ) { }
 
-  }
   openConfirmModal() {
+    this.questionService.checkTimer();
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.data = {
       message: 'Are you sure you want to leave?',
       actionButtonText: 'Yes, leave',
       cancelButtonText: 'Cancel',
+      timerValue: +this.questionService.timerSec,
+      timerLineWidth: this.questionService.timerLineWidth,
     };
     this.matDialog.open(ConfirmModalComponent, dialogConfig);
   }
 
-  ngOnInit(): void {
-    console.log('ngOnInit');
-  }
 
-  ngAfterViewInit() {
-    console.log('AfterViewInit');
-  }
-
-  ngOnDestroy() {
-    console.log('OnDestroy');
-  }
-
-
-  ngOnChanges() {
-    console.log('ngOnChanges');
-  }
-
-  ngDoCheck(){
-    console.log('ngDoCheck');
-  }
 }

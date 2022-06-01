@@ -14,7 +14,8 @@
       <button 
         class="dialog__button"
         mat-button
-        mat-dialog-close>
+        mat-dialog-close
+        (click)="cancelAction()">
         {{ modalData.cancelButtonText }}
     </button>
     </mat-dialog-actions>
