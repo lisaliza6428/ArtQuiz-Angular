@@ -193,8 +193,7 @@ export class QuestionService {
   }
 
 
-  startTimer(t: number) {
-    let time = t;
+  startTimer(time: number) {
     this.renderTimerValue(time);
     this.progressAnimation(time);
     const timer = () => {
