@@ -21,6 +21,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { SortPipe } from './core/pipes/sort.pipe';
 import { SearchPipe } from './core/pipes/search.pipe';
 import { CategoryStyleDirective } from './core/directives/category-style.directive';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { CategoryStyleDirective } from './core/directives/category-style.directi
     NgMaterialModule,
     FormsModule,
     NgxPaginationModule,
+    HttpClientModule,
   ],
   providers: [
     DataService,

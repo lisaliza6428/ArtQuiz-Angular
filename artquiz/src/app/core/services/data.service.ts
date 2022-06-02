@@ -3,6 +3,7 @@ import { DataModel } from '../models/response';
 import { Subject } from 'rxjs';
 import { QUESTIONS_COUNT } from '../consts';
 import { shuffleArray } from '../functions';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -34,7 +35,9 @@ export class DataService {
     timerValue: 20,
   }
 
-  constructor() {
+  constructor(
+    public http: HttpClient,
+  ) {
     this.imagesChange.subscribe((value) => {
       this.images = value;
     });
@@ -61,10 +64,11 @@ export class DataService {
     this.getQuizType();
   }
 
-  async getData(){
-    const response = await fetch('./assets/data.json');
-    const data = await response.json();
-    this.data = data;
+   getData(){
+    this.http.get<DataModel[]>('./assets/data.json').subscribe((data) => {
+      this.data = data;
+    });
+
   }
 
   getRoundData(categoryIndex: number) {

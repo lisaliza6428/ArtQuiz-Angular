@@ -1,8 +1,5 @@
 <app-header currentPage="Gallery"></app-header>
 <div class="wrapper">
-  
- 
-
 
   <div class="controls">
     <select class="select__count" name="" id="" (change)="change($event)"> Show
@@ -40,14 +37,15 @@
   </div>
 
   <div class="cards">
-    <ng-container *ngIf="( dataService.data | search: searchValue) as result">
-      <p class="message" *ngIf="result.length === 0">Not found</p>  
-    </ng-container>
     <div class="picture" *ngFor="let picture of dataService.data | search: searchValue  | sort: sortValue | paginate: { itemsPerPage, currentPage }  ">
       <img class="picture__img" (click)="showDescription(picture)"
         src="../../../assets/img/{{picture.imageNum}}.webp" alt="Picture">
     </div>
+    <ng-container *ngIf="(dataService.data | search: searchValue) as result">
+      <p class="message" *ngIf="result.length === 0">Not found</p>  
+    </ng-container>
   </div>
+
 </div>
 
 
