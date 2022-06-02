@@ -32,7 +32,7 @@
 
 <div class="wrapper">
   <p class="settings__item">Time game:</p>
-  <div class="div">
+  <div class="settings__item-wrapper">
     <span
       class="on_off"
       [innerText]="questionService.timer ? 'On' : 'Off'"
@@ -51,9 +51,9 @@
 
 <div class="wrapper" [ngClass]="questionService.timer ? '' : 'inactive'">
   <p class="settings__item">Time to answer:</p>
-  <div class="numborber">
+  <div class="settings__item-wrapper">
     <button
-      class="btnplus numberbtn"
+      class="settings__item-button"
       [ngClass]="dataService.getSettings().timerValue === 5 ? 'disabled' : ''"
       type="button"
       (click)="minusButtonAction()"
@@ -61,12 +61,12 @@
       -
     </button>
     <input
-      class="number"
+      class="settings__item-input"
       type="text"
       [value]="dataService.getSettings().timerValue"
     />
     <button
-      class="btnplus numberbtn"
+      class="settings__item-button"
       (click)="plusButtonAction()"
       [ngClass]="dataService.getSettings().timerValue === 30 ? 'disabled' : ''"
       type="button"

@@ -20,23 +20,16 @@
     color: #ffbca2;
     cursor: pointer;
   }
-  .control__back-arrow,
-  .control__close-img {
+  .control__back-arrow {
     cursor: pointer;
     width: 45px;
     height: 45px;
-
   }
 }
-
-.typeOuiz {
-  margin: 120px 20px 0 20px;
-  padding: 0;
+.control__close-img {
   cursor: pointer;
-  width: 287px;
-  font-weight: 500;
-  font-size: 22px;
-  line-height: 22px;
+  width: 40px;
+  height: 40px;
 }
 
 .settings__item {
@@ -59,7 +52,6 @@
 
 .sound-bar {
   cursor: pointer;
-  //height: 8px;
   width: 490px;
   position: relative;
   left: -10px;
@@ -68,8 +60,6 @@
     width: 100%;
   }
 }
-
-
 
 .sound-bar-bottom {
   width: 490px;
@@ -189,13 +179,6 @@
   }
 }
 
-.button_timegame_container {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-bottom: 80px;
-}
-
 .on_off {
   font-weight: 500;
   font-size: 24px;
@@ -204,11 +187,8 @@
   display: inline-block;
   margin-bottom: 3px;
 }
-.div {
-  display: flex;
-  align-items: center;
-}
-.numborber {
+
+.settings__item-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -217,7 +197,7 @@
   box-sizing: border-box;
 }
 
-.btnplus {
+.settings__item-button {
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
   background: #ffffff;
@@ -249,7 +229,7 @@
   }
 }
 
-.number {
+.settings__item-input {
   width: 50px;
   height: 30px;
   color: #ffffff;
@@ -261,10 +241,9 @@
   border: none;
   outline: none;
   text-align: center;
-}
-
-.number.inactive {
-  color: grey;
+  &.inactive {
+    color: grey;
+  }
 }
 
 .default-button {
@@ -296,7 +275,7 @@
 .wrapper.inactive {
   * {
     color: grey;
-    .btnplus {
+    .settings__item-button {
       background: grey;
       border: 3px solid grey;
       pointer-events: none;
@@ -328,6 +307,10 @@
     background-color: #ffbca2;
     transition: 0.75s ease-out;
     border: #ffbca2;
+  }
+  @media (max-width: 550px) {
+    width: 220px;
+    height: 50px;
   }
 }
 

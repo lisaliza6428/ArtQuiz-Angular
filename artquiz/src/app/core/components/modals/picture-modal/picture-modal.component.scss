@@ -25,6 +25,8 @@
   left: 0;
   margin: 0 0 30px 40px;
   @media (max-width: 750px) {
+    width: 40px;
+    height: 40px;
     margin: 0 0 20px 40px;
   }
   @media (max-width: 450px) {
@@ -73,102 +75,7 @@
   }
 }
 
-.finish {
-  color: black;
-  display: flex;
-  flex-direction: column;
-  padding: 60px 30px;
-  justify-content: center;
-  align-items: center;
-  * {
-    margin-bottom: 40px;
-  }
-
-  @media (max-width: 750px) {
-    * {
-      margin-bottom: 20px;
-    }
-  }
-}
-
-.finish__wrapper {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  width: 100%;
-}
-
-.finish__button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  cursor: pointer;
-  height: 55px;
-  margin: 5px;
-  font-weight: 500;
-  font-size: 22px;
-  line-height: 23px;
-  width: 180px;
-  border: 3px solid black;
-  background: none;
-  color: black;
-  border-radius: 25px;
-  &:hover {
-    color: black;
-    background-color: #ffffff;
-    transition: 0.75s ease-out;
-  }
-  &:active {
-    color: black;
-    background-color: #ffbca2;
-    transition: 0.75s ease-out;
-    border: #ffbca2;
-  }
-
-  &:hover {
-    color: black;
-    background-color: #ffbca2;
-    border: 3px solid #ffbca2;
-    transition: 0.75s ease-out;
-  }
-  @media (max-width: 450px) {
-width: 100px;
-font-size: 18px;
-  }
-  
-}
-
-.finish__image {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.finish__text  {
-  font-style: normal;
-  font-weight: 600;
-  font-size: 42px;
-  line-height: 51px;
-  @media (max-width: 470px) {
-    font-weight: 500;
-    font-size: 28px;
-    line-height: 32px;
-  }
-}
-
-.finish__score {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 82px;
-  line-height: 102px;
-  text-align: center;
-  text-transform: uppercase;
-  @media (max-width: 470px) {
-    font-weight: 500;
-    font-size: 60px;
-    line-height: 80px;
-  }
-}
+/////////
 
 .button {
   padding: 0;
@@ -184,14 +91,7 @@ font-size: 18px;
   line-height: 22px;
 }
 //////////
-.popup-wrapper {
-  padding: 10px;
-  background: #ffffff;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
+
 
 .button.next {
   background: #ffbca2;

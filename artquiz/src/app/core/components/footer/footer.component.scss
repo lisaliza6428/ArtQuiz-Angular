@@ -5,16 +5,32 @@
   align-items: center;
 }
 
-.footer__dev-link {
-  color: #ffbca2;
-}
-
-@media (max-width: 550px) {
-  .footer__dev-link {
-    margin-left: 20px;
-    font-size: 12px;
-    word-wrap: normal;
-    text-align: right;
+.footer__RSS-img {
+  @media (max-width: 550px) {
+width: 60px;
   }
 }
+.footer__dev {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+}
+.footer__dev-link {
+  color: white;
+  &:hover {
+    color: #ffbca2;
+  }
+  @media (max-width: 550px) {
+      font-size: 12px;
+      word-wrap: normal;
+      text-align: right;
+    }
+}
+.footer__dev-img {
+  width: 20px;
+  height: 20px;
+}
+
+
+
 
