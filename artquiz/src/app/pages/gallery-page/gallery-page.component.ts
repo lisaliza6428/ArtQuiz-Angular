@@ -27,10 +27,6 @@ export class GalleryPageComponent {
     public matDialog: MatDialog
   ) {}
 
-  show() {
-    console.log(this.searchValue);
-  }
-
   showDescription(picture: DataModel) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
@@ -42,12 +38,12 @@ export class GalleryPageComponent {
     this.matDialog.open(PictureModalComponent, dialogConfig);
   }
 
-  change(e: Event) {
+  changePicturesCount(e: Event) {
     const value = (e.target as HTMLSelectElement).value;
     this.itemsPerPage = +value;
   }
 
-  sortAuthor(e: Event) {
+  sortPictures(e: Event) {
     const value = (e.target as HTMLSelectElement).value;
     this.sortValue = value;
   }

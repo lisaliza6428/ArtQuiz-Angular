@@ -23,6 +23,7 @@ import { SortPipe } from './core/pipes/sort.pipe';
 import { SearchPipe } from './core/pipes/search.pipe';
 import { CategoryStyleDirective } from './core/directives/category-style.directive';
 import { HttpClientModule } from '@angular/common/http';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,15 @@ import { HttpClientModule } from '@angular/common/http';
     NgxPaginationModule,
     HttpClientModule,
   ],
-  providers: [DataService, QuestionService, ModalActionsService],
+  providers: [
+    DataService,
+    QuestionService,
+    ModalActionsService,
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

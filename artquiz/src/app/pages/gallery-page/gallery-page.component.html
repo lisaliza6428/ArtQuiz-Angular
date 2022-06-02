@@ -1,7 +1,12 @@
 <app-header currentPage="Gallery"></app-header>
 <div class="wrapper">
   <div class="controls">
-    <select class="select__count" name="" id="" (change)="change($event)">
+    <select
+      class="select__count"
+      name=""
+      id=""
+      (change)="changePicturesCount($event)"
+    >
       Show
       <option value="5">5</option>
       <option value="10" selected>10</option>
@@ -15,7 +20,7 @@
       <option value="50">50</option>
     </select>
 
-    <select class="select__sort" name="" id="" (change)="sortAuthor($event)">
+    <select class="select__sort" name="" id="" (change)="sortPictures($event)">
       Sort
       <option value="authorAZ" selected>Author (A-Z)</option>
       <option value="authorZA">Author (Z-A)</option>
@@ -40,7 +45,6 @@
       type="text"
       placeholder="Search..."
       [(ngModel)]="searchValue"
-      (input)="show()"
     />
   </div>
 

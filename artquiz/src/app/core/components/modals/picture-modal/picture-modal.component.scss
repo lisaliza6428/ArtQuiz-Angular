@@ -1,6 +1,5 @@
 
 .popup-wrapper {
-  padding: 10px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -8,13 +7,13 @@
 }
 
 .popup-image__picture {
-  width: 90%;
+  width: 100%;
   border-radius: 20px;
 }
 
 .popup-image {
   position: relative;
-  margin: 20px 0;
+  margin: 0 0 10px 0;
   display: flex;
   justify-content: center;
 }
@@ -40,7 +39,7 @@
   font-size: 26px;
   line-height: 28px;
   color: black;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
   @media (max-width: 750px) {
     font-size: 24px;
   }
@@ -62,26 +61,13 @@
   }
 }
 
-.button.next {
-  background: #ffbca2;
-  color: black;
-  margin: 5px auto 5px auto;
-  &:hover{
-    background: #ffbca2;
-    color: #ffffff;
-  }
-  @media (max-width: 450px) {
-    width: 200px;
-  }
-}
 
-/////////
 
 .button {
   padding: 0;
   cursor: pointer;
   width: 287px;
-  height: 62px;
+  height: 55px;
   border: 2px solid #fff;
   background: none;
   color: #fff;
@@ -89,20 +75,17 @@
   font-weight: 500;
   font-size: 22px;
   line-height: 22px;
-}
-//////////
-
-
-.button.next {
-  background: #ffbca2;
-  color: black;
-  margin: 5px auto 5px auto;
-  &:hover {
+  &.next {
     background: #ffbca2;
-    color: #ffffff;
-  }
-  @media (max-width: 450px) {
-    width: 200px;
+    color: black;
+    margin: 5px auto 5px auto;
+    &:hover{
+      background: #ffbca2;
+      color: #ffffff;
+    }
+    @media (max-width: 450px) {
+      width: 200px;
+    }
   }
 }
 

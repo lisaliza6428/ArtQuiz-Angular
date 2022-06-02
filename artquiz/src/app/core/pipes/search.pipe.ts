@@ -8,8 +8,8 @@ export class SearchPipe implements PipeTransform {
     if (!data || !input) return data;
     return [...data].filter(
       (x) =>
-        x.authorEN.toLowerCase().includes(input) ||
-        x.nameEN.toLowerCase().includes(input)
+        x.authorEN.toLowerCase().includes(input.toLowerCase()) ||
+        x.nameEN.toLowerCase().includes(input.toLowerCase())
     );
   }
 }
