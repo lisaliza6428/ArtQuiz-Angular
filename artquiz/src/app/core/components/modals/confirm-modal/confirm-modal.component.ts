@@ -8,7 +8,7 @@ import { ModalActionsService } from '../../../services/modal-actions.service';
 @Component({
   selector: 'app-confirm-modal',
   templateUrl: './confirm-modal.component.html',
-  styleUrls: ['./confirm-modal.component.scss']
+  styleUrls: ['./confirm-modal.component.scss'],
 })
 export class ConfirmModalComponent {
 
@@ -21,7 +21,7 @@ export class ConfirmModalComponent {
     public modalActionsService: ModalActionsService,
   ) { }
 
-  action () {
+  action() {
     this.modalActionsService.modalAction(this.modalData);
   }
 

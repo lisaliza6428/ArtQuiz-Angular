@@ -3,7 +3,7 @@ import { QuestionService } from './question.service';
 import { DataService } from './data.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 
 export class ModalActionsService {
@@ -16,7 +16,7 @@ export class ModalActionsService {
   modalAction(modalData: any) {
     switch (modalData.modal) {
       case 'leaveQuestion':
-        this.questionService.quitQuiz()
+        this.questionService.quitQuiz();
         break;
 
       case 'resetProgress':

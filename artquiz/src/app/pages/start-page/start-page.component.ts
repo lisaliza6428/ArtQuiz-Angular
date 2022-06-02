@@ -1,21 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../../core/services/data.service';
 
 @Component({
   selector: 'app-start-page',
   templateUrl: './start-page.component.html',
-  styleUrls: ['./start-page.component.scss']
+  styleUrls: ['./start-page.component.scss'],
 })
-export class StartPageComponent implements OnInit {
+export class StartPageComponent {
 
   constructor(
     public dataService: DataService,
     public router: Router,
   ) { }
 
-  ngOnInit(): void {
-  }
 
   openGallery() {
     this.router.navigate(['/gallery']);

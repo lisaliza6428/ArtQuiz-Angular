@@ -9,8 +9,9 @@ import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
+
 export class DataService {
 
   quiz = '';
@@ -33,7 +34,7 @@ export class DataService {
     volume: 0.2,
     timer: true,
     timerValue: 20,
-  }
+  };
 
   constructor(
     public http: HttpClient,
@@ -48,12 +49,12 @@ export class DataService {
       this.data = value;
     });
     this.getData();
-   }
+  }
 
   getQuizType() {
     const quiz = localStorage.getItem('quiz');
     if (quiz !== null) {
-     this.quiz = quiz;
+      this.quiz = quiz;
     } else {
       this.quiz = '';
     }
@@ -64,7 +65,7 @@ export class DataService {
     this.getQuizType();
   }
 
-   getData(){
+  getData() {
     this.http.get<DataModel[]>('./assets/data.json').subscribe((data) => {
       this.data = data;
     });
@@ -95,8 +96,8 @@ export class DataService {
       start = Math.floor(this.data.length / 2) ;
     }
 
-    const imageNums = new Array(12).fill(start).map((x: number, i) => x + 10*i);
-    this.imagesChange.next(imageNums)
+    const imageNums = new Array(12).fill(start).map((x: number, i) => x + 10 * i);
+    this.imagesChange.next(imageNums);
   }
 
   getAnswersArray() {
@@ -132,6 +133,5 @@ export class DataService {
     settings[field] = value;
     this.setSettings(settings);
   }
-
 
 }

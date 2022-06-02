@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatSliderChange } from '@angular/material/slider';
 import { DataService } from '../../core/services/data.service';
 import { QuestionService } from '../../core/services/question.service';
@@ -8,7 +8,7 @@ import { ConfirmModalComponent } from '../../core/components/modals/confirm-moda
 @Component({
   selector: 'app-settings-page',
   templateUrl: './settings-page.component.html',
-  styleUrls: ['./settings-page.component.scss']
+  styleUrls: ['./settings-page.component.scss'],
 })
 export class SettingsPageComponent implements OnInit {
 
@@ -24,9 +24,9 @@ export class SettingsPageComponent implements OnInit {
     this.volumeValue = this.dataService.getSettings().volume;
   }
 
-  handleVolumeChange(event: MatSliderChange){
+  handleVolumeChange(event: MatSliderChange) {
     if (event.value != null) {
-      this.dataService.updateSettings('volume', event.value )
+      this.dataService.updateSettings('volume', event.value );
       this.questionService.getSound('correct');
     }
   }
@@ -34,10 +34,13 @@ export class SettingsPageComponent implements OnInit {
   handleTimerChange(event: Event) {
     console.log((event.target as HTMLInputElement).checked);
     const isChecked = (event.target as HTMLInputElement).checked;
-    isChecked ? this.questionService.timerChange.next(true) : this.questionService.timerChange.next(false);
-  }
+    if (isChecked) {
+      this.questionService.timerChange.next(true); 
+    } else {
+      this.questionService.timerChange.next(false);
+    }
 
-  j =1;
+  }
 
   minusButtonAction() {
     let seconds = this.dataService.getSettings().timerValue;
@@ -62,7 +65,7 @@ export class SettingsPageComponent implements OnInit {
 
   }
 
-  resetButtonAction(){
+  resetButtonAction() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.data = {

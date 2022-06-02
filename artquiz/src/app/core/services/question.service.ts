@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { DataModel } from '../models/response';
 import { DataService } from './data.service';
 import { getRandomNumber, shuffleArray } from '../functions';
@@ -9,25 +9,40 @@ import { FinishModalComponent } from '../components/modals/finish-modal/finish-m
 import { PictureModalComponent } from '../components/modals/picture-modal/picture-modal.component';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class QuestionService implements OnInit {
+export class QuestionService {
 
   timer = true;
+
   timerChange: Subject<boolean> = new Subject<boolean>();
+
   timerSec = '';
+
   timerSecChange: Subject<string> = new Subject<string>();
+
   round!: DataModel[];
+
   variants!: DataModel[];
+
   variantsChange: Subject<DataModel[]> = new Subject<DataModel[]>();
+
   rightAnswer!: DataModel;
+
   rightAnswerChange: Subject<DataModel> = new Subject<DataModel>();
+
   currentIndex = 0;
+
   currentIndexChange: Subject<number> = new Subject<number>();
+
   roundAnswers: number[] = new Array(10).fill(0);
+
   roundAnswersChange: Subject<number[]> = new Subject<number[]>();
+
   currentTimer!: any;
+
   currentTimerAnimation!: any;
+
   timerLineWidth = 0;
 
   constructor(
@@ -58,11 +73,7 @@ export class QuestionService implements OnInit {
     this.timerSecChange.subscribe((value: string) => {
       this.timerSec = value;
     });
-  }
-
-  ngOnInit(): void {
     this.timerSec = this.dataService.getSettings().timerValue;
-
   }
 
   public generateVariants() {
@@ -90,7 +101,7 @@ export class QuestionService implements OnInit {
     this.timerLineWidth = 0;
     this.currentIndexChange.next(0);
     this.roundAnswersChange.next(new Array(10).fill(0));
-    this.router.navigate(['/categories'])
+    this.router.navigate(['/categories']);
   }
 
   public checkFinish() {
@@ -156,7 +167,7 @@ export class QuestionService implements OnInit {
       let imageNum = roundItem.imageNum;
       let answer = this.roundAnswers[index];
       arr[imageNum] = `${answer}`;
-    })
+    });
     this.dataService.setAnswersArray(arr);
   }
 
@@ -189,7 +200,7 @@ export class QuestionService implements OnInit {
     const timer = () => {
       time -= 1;
       if (time <= 0) {
-        this.checkTimer()
+        this.checkTimer();
         this.timeIsOver();
         this.timerSecChange.next(`0${0}`);
       } else if (time <= 9) {
@@ -219,7 +230,7 @@ export class QuestionService implements OnInit {
         width += 1;
         this.timerLineWidth = width;
       }
-    }
+    };
     this.currentTimerAnimation = setInterval(animate, time * 10);
   }
 }

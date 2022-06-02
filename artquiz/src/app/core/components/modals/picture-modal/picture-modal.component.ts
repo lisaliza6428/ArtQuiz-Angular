@@ -5,7 +5,7 @@ import { QuestionService } from '../../../services/question.service';
 @Component({
   selector: 'app-modal',
   templateUrl: './picture-modal.component.html',
-  styleUrls: ['./picture-modal.component.scss']
+  styleUrls: ['./picture-modal.component.scss'],
 })
 export class PictureModalComponent {
 

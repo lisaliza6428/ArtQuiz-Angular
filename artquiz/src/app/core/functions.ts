@@ -1,6 +1,6 @@
-import { DataModel } from "./models/response";
+import { DataModel } from './models/response';
 
-export function getRandomNumber(min: number, max:number) {
+export function getRandomNumber(min: number, max: number): number {
   let minNum = min;
   let maxNum = max;
   minNum = Math.ceil(minNum);
@@ -8,7 +8,7 @@ export function getRandomNumber(min: number, max:number) {
   return Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
 }
 
-export function shuffleArray(arr: DataModel[]) {
+export function shuffleArray(arr: DataModel[]): DataModel[] {
   const array = arr;
   let j;
   let temp;

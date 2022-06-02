@@ -3,9 +3,9 @@ import { Directive, ElementRef, Input, Renderer2, OnInit   } from '@angular/core
 import { DataService } from '../services/data.service';
 
 @Directive({
-  selector: '[appPictureStyle]'
+  selector: '[appPictureStyle]',
 })
-export class PictureStyleDirective {
+export class PictureStyleDirective implements OnInit {
   @Input('appPictureStyle') imageNum: any;
 
 

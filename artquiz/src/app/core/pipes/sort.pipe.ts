@@ -3,14 +3,12 @@ import { DataModel } from '../models/response';
 import { DataService } from '../services/data.service';
 
 @Pipe({
-  name: 'sort'
+  name: 'sort',
 })
 export class SortPipe implements PipeTransform {
   constructor(
-   public dataService: DataService,
-  ) {
-
-  }
+    public dataService: DataService,
+  ) { }
 
   transform(data: any, sort: string) {
     if (!data || !sort) return data;
