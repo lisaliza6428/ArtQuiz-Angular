@@ -11,8 +11,8 @@ import { QuestionService } from '../../core/services/question.service';
   selector: 'app-question-page',
   templateUrl: './question-page.component.html',
   styleUrls: ['./question-page.component.scss'],
-  
 })
+
 export class QuestionPageComponent{
 
   constructor(
@@ -26,14 +26,11 @@ export class QuestionPageComponent{
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.data = {
+      modal: 'leaveQuestion',
       message: 'Are you sure you want to leave?',
       actionButtonText: 'Yes, leave',
       cancelButtonText: 'Cancel',
-      timerValue: +this.questionService.timerSec,
-      timerLineWidth: this.questionService.timerLineWidth,
     };
     this.matDialog.open(ConfirmModalComponent, dialogConfig);
   }
-
-
 }

@@ -82,19 +82,18 @@ export class QuestionService implements OnInit {
     this.timerSec = this.dataService.getSettings().timerValue;
     this.variantsChange.next(random);
     if (this.timer) {
-      this.renderTimerValue(+this.timerSec);
       this.startTimer(+this.timerSec);
     }
   }
 
-  public quitQuiz(){
+  public quitQuiz() {
     this.timerLineWidth = 0;
     this.currentIndexChange.next(0);
     this.roundAnswersChange.next(new Array(10).fill(0));
     this.router.navigate(['/categories'])
   }
 
-  public checkFinish(){
+  public checkFinish() {
     this.timerLineWidth = 0;
     let index = this.currentIndex + 1;
     if (index === 10) {
@@ -130,7 +129,7 @@ export class QuestionService implements OnInit {
     this.matDialog.open(PictureModalComponent, dialogConfig);
   }
 
-  finishRoundActions(){
+  finishRoundActions() {
     this.updateAnswersArray();
     this.getSound('finish');
     const dialogConfig = new MatDialogConfig();
@@ -160,8 +159,8 @@ export class QuestionService implements OnInit {
     })
     this.dataService.setAnswersArray(arr);
   }
-  
-  getSound(answer: string){
+
+  getSound(answer: string) {
     const audio = new Audio();
     const settings = this.dataService.getSettings();
     audio.volume = settings.volume;
@@ -185,6 +184,7 @@ export class QuestionService implements OnInit {
 
   startTimer(t: number) {
     let time = t;
+    this.renderTimerValue(time);
     this.progressAnimation(time);
     const timer = () => {
       time -= 1;
@@ -201,9 +201,9 @@ export class QuestionService implements OnInit {
     this.currentTimer = setInterval(timer, 1000);
   }
 
-  renderTimerValue(time:  number) {
+  renderTimerValue(time: number) {
     const number = 9;
-  if (time <= number) {
+    if (time <= number) {
       this.timerSecChange.next(`0${time}`);
     } else {
       this.timerSecChange.next(`${time}`);
@@ -218,7 +218,7 @@ export class QuestionService implements OnInit {
       } else {
         width += 1;
         this.timerLineWidth = width;
-      } 
+      }
     }
     this.currentTimerAnimation = setInterval(animate, time * 10);
   }

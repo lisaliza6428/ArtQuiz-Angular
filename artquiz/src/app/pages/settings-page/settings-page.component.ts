@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatSliderChange } from '@angular/material/slider';
 import { DataService } from '../../core/services/data.service';
 import { QuestionService } from '../../core/services/question.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ConfirmModalComponent } from '../../core/components/modals/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-settings-page',
@@ -15,6 +17,7 @@ export class SettingsPageComponent implements OnInit {
   constructor(
     public dataService: DataService,
     public questionService: QuestionService,
+    public matDialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -57,6 +60,18 @@ export class SettingsPageComponent implements OnInit {
     this.dataService.setDefaultSettings();
     this.questionService.timerChange.next(true);
 
+  }
+
+  resetButtonAction(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.data = {
+      modal: 'resetProgress',
+      message: 'Are you sure you want to reset your progress?',
+      actionButtonText: 'Yes, reset',
+      cancelButtonText: 'Cancel',
+    };
+    this.matDialog.open(ConfirmModalComponent, dialogConfig);
   }
 
 }

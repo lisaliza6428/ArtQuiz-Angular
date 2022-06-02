@@ -10,6 +10,7 @@ import { QuestionPageComponent } from './pages/question-page/question-page.compo
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
 import { DataService } from './core/services/data.service';
 import { QuestionService } from './core/services/question.service';
+import { ModalActionsService } from './core/services/modal-actions.service';
 import { ScorePageComponent } from './pages/score-page/score-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgMaterialModule } from './ng-material/ng-material.module';
@@ -52,6 +53,7 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [
     DataService,
     QuestionService,
+    ModalActionsService,
   ],
   bootstrap: [AppComponent],
 })
