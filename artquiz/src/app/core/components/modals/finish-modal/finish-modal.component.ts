@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { QuestionService } from '../../services/question.service';
+import { QuestionService } from '../../../services/question.service';
 
 @Component({
   selector: 'app-finish-modal',

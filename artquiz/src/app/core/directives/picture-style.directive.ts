@@ -1,3 +1,4 @@
+// For score page
 import { Directive, ElementRef, Input, Renderer2, OnInit   } from '@angular/core';
 import { DataService } from '../services/data.service';
 

@@ -1,70 +1,17 @@
-
 .popup-wrapper {
   padding: 10px;
+  background: #ffffff;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   text-align: center;
 }
 
-.popup-image__picture {
-  width: 90%;
-  border-radius: 20px;
-}
-
-.popup-image {
-  position: relative;
-  margin: 20px 0;
-  display: flex;
-  justify-content: center;
-}
-
-.popup-image__icon {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  margin: 0 0 30px 40px;
-  @media (max-width: 750px) {
-    margin: 0 0 20px 40px;
-  }
-  @media (max-width: 450px) {
-    margin: 0 0 15px 25px;
-  }
-}
-
-.picture-name {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 26px;
-  line-height: 28px;
-  color: black;
-  margin-bottom: 5px;
-  @media (max-width: 750px) {
-    font-size: 24px;
-  }
-  @media (max-width: 450px) {
-    font-size: 22px;
-  }
-}
-
-.picture-info {
-  font-weight: normal;
-  font-size: 22px;
-  line-height: 26px;
-  color: black;
-  @media (max-width: 750px) {
-    font-size: 20px;
-  }
-  @media (max-width: 450px) {
-    font-size: 18px;
-  }
-}
-
 .button.next {
   background: #ffbca2;
   color: black;
   margin: 5px auto 5px auto;
-  &:hover{
+  &:hover {
     background: #ffbca2;
     color: #ffffff;
   }
@@ -77,11 +24,11 @@
   color: black;
   display: flex;
   flex-direction: column;
-  padding: 60px 30px;
+  padding: 20px;
   justify-content: center;
   align-items: center;
   * {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
 
   @media (max-width: 750px) {
@@ -93,7 +40,7 @@
 
 .finish__wrapper {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: row;
   width: 100%;
 }
@@ -133,18 +80,17 @@
     transition: 0.75s ease-out;
   }
   @media (max-width: 450px) {
-width: 100px;
-font-size: 18px;
+    width: 100px;
+    font-size: 18px;
   }
-  
 }
 
 .finish__image {
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
+  height: 160px;
 }
 
-.finish__text  {
+.finish__text {
   font-style: normal;
   font-weight: 600;
   font-size: 42px;
@@ -168,18 +114,4 @@ font-size: 18px;
     font-size: 60px;
     line-height: 80px;
   }
-}
-
-.button {
-  padding: 0;
-  cursor: pointer;
-  width: 287px;
-  height: 62px;
-  border: 2px solid #fff;
-  background: none;
-  color: #fff;
-  border-radius: 60px;
-  font-weight: 500;
-  font-size: 22px;
-  line-height: 22px;
 }

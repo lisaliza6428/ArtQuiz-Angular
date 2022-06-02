@@ -1,7 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { QuestionService } from '../../services/question.service';
+import { QuestionService } from '../../../services/question.service';
+import { DataService } from '../../../services/data.service';
 
 @Component({
   selector: 'app-confirm-modal',
@@ -15,11 +16,13 @@ export class ConfirmModalComponent {
     @Inject(MAT_DIALOG_DATA) public modalData: any,
     public router: Router,
     public questionService: QuestionService,
+    public dataService: DataService,
   ) { }
 
   cancelAction() {
     if (this.questionService.timer) {
-      this.questionService.startTimer(this.modalData.timerValue)
+      const time = this.dataService.getSettings().timerValue;
+      this.questionService.startTimer(+time)
     }
   }
 

@@ -5,8 +5,8 @@ import { getRandomNumber, shuffleArray } from '../functions';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { FinishModalComponent } from '../components/finish-modal/finish-modal.component';
-import { ModalComponent } from '../components/modal/modal.component';
+import { FinishModalComponent } from '../components/modals/finish-modal/finish-modal.component';
+import { PictureModalComponent } from '../components/modals/picture-modal/picture-modal.component';
 
 @Injectable({
   providedIn: 'root'
@@ -82,6 +82,7 @@ export class QuestionService implements OnInit {
     this.timerSec = this.dataService.getSettings().timerValue;
     this.variantsChange.next(random);
     if (this.timer) {
+      this.renderTimerValue(+this.timerSec);
       this.startTimer(+this.timerSec);
     }
   }
@@ -126,7 +127,7 @@ export class QuestionService implements OnInit {
       answer: this.rightAnswer,
       isCorrect: isCorrect,
     };
-    this.matDialog.open(ModalComponent, dialogConfig);
+    this.matDialog.open(PictureModalComponent, dialogConfig);
   }
 
   finishRoundActions(){
@@ -178,7 +179,7 @@ export class QuestionService implements OnInit {
       answer: this.rightAnswer,
       isCorrect: 'wrong',
     };
-    this.matDialog.open(ModalComponent, dialogConfig);
+    this.matDialog.open(PictureModalComponent, dialogConfig);
   }
 
 
@@ -200,8 +201,17 @@ export class QuestionService implements OnInit {
     this.currentTimer = setInterval(timer, 1000);
   }
 
+  renderTimerValue(time:  number) {
+    const number = 9;
+  if (time <= number) {
+      this.timerSecChange.next(`0${time}`);
+    } else {
+      this.timerSecChange.next(`${time}`);
+    }
+  }
+
   progressAnimation(time: number) {
-    let width = this.timerLineWidth;
+    let width = 0;
     const animate = () => {
       if (width >= 100) {
         clearInterval(this.currentTimerAnimation);

@@ -1,16 +1,16 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { QuestionService } from '../../services/question.service';
+import { QuestionService } from '../../../services/question.service';
 
 @Component({
   selector: 'app-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss']
+  templateUrl: './picture-modal.component.html',
+  styleUrls: ['./picture-modal.component.scss']
 })
-export class ModalComponent {
+export class PictureModalComponent {
 
   constructor(
-    public dialogRef: MatDialogRef<ModalComponent>,
+    public dialogRef: MatDialogRef<PictureModalComponent>,
     @Inject(MAT_DIALOG_DATA) public modalData: any,
     public questionService: QuestionService,
   ) { }

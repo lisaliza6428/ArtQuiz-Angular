@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/core/services/data.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ModalComponent } from '../../core/components/modal/modal.component';
+import { PictureModalComponent } from '../../core/components/modals/picture-modal/picture-modal.component';
 import { DataModel } from 'src/app/core/models/response';
 
 @Component({
@@ -27,8 +27,7 @@ export class ScorePageComponent implements OnInit {
       gallery: true,
       answer: picture,
     };
-    this.matDialog.open(ModalComponent, dialogConfig);
-
+    this.matDialog.open(PictureModalComponent, dialogConfig);
   }
 
 }
