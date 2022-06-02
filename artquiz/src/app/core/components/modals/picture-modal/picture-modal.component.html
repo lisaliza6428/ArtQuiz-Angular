@@ -1,30 +1,35 @@
 <div class="popup-wrapper">
   <div class="popup-image">
-    <img 
+    <img
       class="popup-image__picture"
-      src="../../../../assets/img/{{modalData.answer.imageNum}}.webp"
-      alt="picture">
+      src="../../../../assets/img/{{ modalData.answer.imageNum }}.webp"
+      alt="picture"
+    />
     <img
       class="popup-image__icon"
       *ngIf="modalData.question"
-      src="../../../../assets/svg/{{modalData.isCorrect}}-answer.svg"
-      alt="picture">
+      src="../../../../assets/svg/{{ modalData.isCorrect }}-answer.svg"
+      alt="picture"
+    />
   </div>
-  <h3 class="picture-name">{{modalData.answer.authorEN}}</h3>
-  <div class="picture-info">{{modalData.answer.nameEN}}</div>
-  <div class="picture-info">{{modalData.answer.year}}</div>
+  <h3 class="picture-name">{{ modalData.answer.authorEN }}</h3>
+  <div class="picture-info">{{ modalData.answer.nameEN }}</div>
+  <div class="picture-info">{{ modalData.answer.year }}</div>
   <button
     class="button next"
     *ngIf="modalData.question"
-    mat-button mat-dialog-close 
-    (click)="questionService.checkFinish()">
-      Next
+    mat-button
+    mat-dialog-close
+    (click)="questionService.checkFinish()"
+  >
+    Next
   </button>
   <button
     class="button next"
     *ngIf="modalData.gallery"
-    mat-button mat-dialog-close>
-      Close
+    mat-button
+    mat-dialog-close
+  >
+    Close
   </button>
-
 </div>

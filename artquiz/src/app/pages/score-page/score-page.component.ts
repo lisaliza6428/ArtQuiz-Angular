@@ -10,11 +10,7 @@ import { DataModel } from 'src/app/core/models/response';
   styleUrls: ['./score-page.component.scss'],
 })
 export class ScorePageComponent {
-
-  constructor(
-    public dataService: DataService,
-    public matDialog: MatDialog,
-  ) { }
+  constructor(public dataService: DataService, public matDialog: MatDialog) {}
 
   showDescription(picture: DataModel) {
     const dialogConfig = new MatDialogConfig();
@@ -26,5 +22,4 @@ export class ScorePageComponent {
     };
     this.matDialog.open(PictureModalComponent, dialogConfig);
   }
-
 }

@@ -1,24 +1,25 @@
-<div  class="dialog">
+<div class="dialog">
   <h3 class="dialog__title">{{ modalData.message }}</h3>
   <div class="div">
     <mat-dialog-actions align="center">
-      <button 
+      <button
         class="dialog__button"
-        mat-button 
+        mat-button
         [mat-dialog-close]="true"
         type="button"
-        (click)="action()">
+        (click)="action()"
+      >
         {{ modalData.actionButtonText }}
-     </button>
+      </button>
 
-      <button 
+      <button
         class="dialog__button"
         mat-button
         mat-dialog-close
-        (click)="cancelAction()">
+        (click)="cancelAction()"
+      >
         {{ modalData.cancelButtonText }}
-    </button>
+      </button>
     </mat-dialog-actions>
   </div>
 </div>
-

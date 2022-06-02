@@ -11,15 +11,14 @@ import { ModalActionsService } from '../../../services/modal-actions.service';
   styleUrls: ['./confirm-modal.component.scss'],
 })
 export class ConfirmModalComponent {
-
   constructor(
     public dialogRef: MatDialogRef<ConfirmModalComponent>,
     @Inject(MAT_DIALOG_DATA) public modalData: any,
     public router: Router,
     public questionService: QuestionService,
     public dataService: DataService,
-    public modalActionsService: ModalActionsService,
-  ) { }
+    public modalActionsService: ModalActionsService
+  ) {}
 
   action() {
     this.modalActionsService.modalAction(this.modalData);

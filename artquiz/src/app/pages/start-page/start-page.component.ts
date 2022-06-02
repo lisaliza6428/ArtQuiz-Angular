@@ -8,12 +8,7 @@ import { DataService } from '../../core/services/data.service';
   styleUrls: ['./start-page.component.scss'],
 })
 export class StartPageComponent {
-
-  constructor(
-    public dataService: DataService,
-    public router: Router,
-  ) { }
-
+  constructor(public dataService: DataService, public router: Router) {}
 
   openGallery() {
     this.router.navigate(['/gallery']);
@@ -30,5 +25,4 @@ export class StartPageComponent {
     this.dataService.getCategoryImages();
     this.router.navigate(['/categories']);
   }
-
 }

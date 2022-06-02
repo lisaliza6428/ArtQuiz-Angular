@@ -21,10 +21,6 @@ import { RouterModule } from '@angular/router';
     MatSliderModule,
     RouterModule,
   ],
-  exports: [
-    MatDialogModule,
-    MatButtonModule,
-    MatSliderModule,
-  ],
+  exports: [MatDialogModule, MatButtonModule, MatSliderModule],
 })
-export class NgMaterialModule { }
+export class NgMaterialModule {}

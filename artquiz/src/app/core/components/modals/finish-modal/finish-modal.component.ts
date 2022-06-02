@@ -8,11 +8,9 @@ import { QuestionService } from '../../../services/question.service';
   styleUrls: ['./finish-modal.component.scss'],
 })
 export class FinishModalComponent {
-
   constructor(
     public dialogRef: MatDialogRef<FinishModalComponent>,
     @Inject(MAT_DIALOG_DATA) public modalData: any,
-    public questionService: QuestionService,
-  ) { }
-
+    public questionService: QuestionService
+  ) {}
 }

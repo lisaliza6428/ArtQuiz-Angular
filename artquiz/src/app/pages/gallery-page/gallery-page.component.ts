@@ -11,7 +11,6 @@ import { DataModel } from 'src/app/core/models/response';
   styleUrls: ['./gallery-page.component.scss'],
 })
 export class GalleryPageComponent {
-
   none = 'none';
 
   currentPage = 1;
@@ -25,13 +24,12 @@ export class GalleryPageComponent {
   constructor(
     public dataService: DataService,
     public questionService: QuestionService,
-    public matDialog: MatDialog,
-  ) { }
+    public matDialog: MatDialog
+  ) {}
 
   show() {
     console.log(this.searchValue);
   }
-
 
   showDescription(picture: DataModel) {
     const dialogConfig = new MatDialogConfig();
@@ -42,7 +40,6 @@ export class GalleryPageComponent {
       answer: picture,
     };
     this.matDialog.open(PictureModalComponent, dialogConfig);
-
   }
 
   change(e: Event) {
@@ -54,5 +51,4 @@ export class GalleryPageComponent {
     const value = (e.target as HTMLSelectElement).value;
     this.sortValue = value;
   }
-
 }

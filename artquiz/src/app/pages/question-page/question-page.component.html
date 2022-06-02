@@ -1,44 +1,80 @@
 <div class="question-page">
   <div class="question-page__top">
-
-    <img class="question-page__close-img" src="/assets/svg/close.svg" alt="cross" (click)="openConfirmModal()">
+    <img
+      class="question-page__close-img"
+      src="/assets/svg/close.svg"
+      alt="cross"
+      (click)="openConfirmModal()"
+    />
 
     <ng-container *ngIf="questionService.timer">
       <div class="timer">
         <div class="timer__line"></div>
-        <div class="timer__line timer__line--colored" [ngStyle]="{width: questionService.timerLineWidth + '%'}"></div>
+        <div
+          class="timer__line timer__line--colored"
+          [ngStyle]="{ width: questionService.timerLineWidth + '%' }"
+        ></div>
       </div>
-      <span class="time" id="time">00:{{questionService.timerSec}}
-      </span>
+      <span class="time" id="time">00:{{ questionService.timerSec }} </span>
     </ng-container>
-
   </div>
 
-  <p class="question" *ngIf="dataService.quiz === 'artists'">Who is the author of this picture?</p>
-  <p class="question" *ngIf="dataService.quiz === 'pictures'">Which is {{questionService.rightAnswer.authorEN}} picture?</p>
+  <p class="question" *ngIf="dataService.quiz === 'artists'">
+    Who is the author of this picture?
+  </p>
+  <p class="question" *ngIf="dataService.quiz === 'pictures'">
+    Which is {{ questionService.rightAnswer.authorEN }} picture?
+  </p>
 
   <div class="picture-container" *ngIf="dataService.quiz === 'artists'">
-    <img class="question-picture" src="../../../assets/img/{{questionService.rightAnswer.imageNum}}.webp" alt="picture">
+    <img
+      class="question-picture"
+      src="../../../assets/img/{{ questionService.rightAnswer.imageNum }}.webp"
+      alt="picture"
+    />
   </div>
 
-  <div class="picture-container pictures-container" *ngIf="dataService.quiz === 'pictures'">
-    <div class="image-wrapper" *ngFor="let variant of questionService.variants" [id]="variant.imageNum" 
-    (click)="questionService.checkAnswer($event, +variant.imageNum)">
-      <img class="image-wrapper__picture" src="../../../assets/img/{{variant.imageNum}}.webp" alt="picture">
+  <div
+    class="picture-container pictures-container"
+    *ngIf="dataService.quiz === 'pictures'"
+  >
+    <div
+      class="image-wrapper"
+      *ngFor="let variant of questionService.variants"
+      [id]="variant.imageNum"
+      (click)="questionService.checkAnswer($event, +variant.imageNum)"
+    >
+      <img
+        class="image-wrapper__picture"
+        src="../../../assets/img/{{ variant.imageNum }}.webp"
+        alt="picture"
+      />
       <div class="image-wrapper__bg"></div>
     </div>
   </div>
 
   <div class="question-dots">
-    <span *ngFor="let answer of questionService.roundAnswers; let i = index"
-      [ngStyle]="answer ? {'background-color': 'green'} : i < questionService.currentIndex ? {'background-color': 'red'} : null"
-      class="question-dots__dot"></span>
+    <span
+      *ngFor="let answer of questionService.roundAnswers; let i = index"
+      [ngStyle]="
+        answer
+          ? { 'background-color': 'green' }
+          : i < questionService.currentIndex
+          ? { 'background-color': 'red' }
+          : null
+      "
+      class="question-dots__dot"
+    ></span>
   </div>
 
   <div class="question-answers" *ngIf="dataService.quiz === 'artists'">
-    <button class="button answer" *ngFor="let variant of questionService.variants" [id]="variant.imageNum"
-      (click)="questionService.checkAnswer($event, +variant.imageNum)">
-      {{ variant.authorEN }}</button>
+    <button
+      class="button answer"
+      *ngFor="let variant of questionService.variants"
+      [id]="variant.imageNum"
+      (click)="questionService.checkAnswer($event, +variant.imageNum)"
+    >
+      {{ variant.authorEN }}
+    </button>
   </div>
-
 </div>

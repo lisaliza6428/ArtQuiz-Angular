@@ -11,14 +11,13 @@ import { ConfirmModalComponent } from '../../core/components/modals/confirm-moda
   styleUrls: ['./settings-page.component.scss'],
 })
 export class SettingsPageComponent implements OnInit {
-
   volumeValue!: number;
 
   constructor(
     public dataService: DataService,
     public questionService: QuestionService,
-    public matDialog: MatDialog,
-  ) { }
+    public matDialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.volumeValue = this.dataService.getSettings().volume;
@@ -26,7 +25,7 @@ export class SettingsPageComponent implements OnInit {
 
   handleVolumeChange(event: MatSliderChange) {
     if (event.value != null) {
-      this.dataService.updateSettings('volume', event.value );
+      this.dataService.updateSettings('volume', event.value);
       this.questionService.getSound('correct');
     }
   }
@@ -35,11 +34,10 @@ export class SettingsPageComponent implements OnInit {
     console.log((event.target as HTMLInputElement).checked);
     const isChecked = (event.target as HTMLInputElement).checked;
     if (isChecked) {
-      this.questionService.timerChange.next(true); 
+      this.questionService.timerChange.next(true);
     } else {
       this.questionService.timerChange.next(false);
     }
-
   }
 
   minusButtonAction() {
@@ -56,13 +54,11 @@ export class SettingsPageComponent implements OnInit {
       seconds = +seconds + 5;
       this.dataService.updateSettings('timerValue', seconds);
     }
-    
   }
 
   defaultButtonAction() {
     this.dataService.setDefaultSettings();
     this.questionService.timerChange.next(true);
-
   }
 
   resetButtonAction() {
@@ -76,5 +72,4 @@ export class SettingsPageComponent implements OnInit {
     };
     this.matDialog.open(ConfirmModalComponent, dialogConfig);
   }
-
 }

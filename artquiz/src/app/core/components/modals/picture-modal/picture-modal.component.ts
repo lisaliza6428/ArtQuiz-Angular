@@ -8,11 +8,9 @@ import { QuestionService } from '../../../services/question.service';
   styleUrls: ['./picture-modal.component.scss'],
 })
 export class PictureModalComponent {
-
   constructor(
     public dialogRef: MatDialogRef<PictureModalComponent>,
     @Inject(MAT_DIALOG_DATA) public modalData: any,
-    public questionService: QuestionService,
-  ) { }
-
+    public questionService: QuestionService
+  ) {}
 }

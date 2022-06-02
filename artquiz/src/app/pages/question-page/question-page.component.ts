@@ -9,14 +9,12 @@ import { QuestionService } from '../../core/services/question.service';
   templateUrl: './question-page.component.html',
   styleUrls: ['./question-page.component.scss'],
 })
-
 export class QuestionPageComponent {
-
   constructor(
     public dataService: DataService,
     public questionService: QuestionService,
-    public matDialog: MatDialog,
-  ) { }
+    public matDialog: MatDialog
+  ) {}
 
   openConfirmModal() {
     this.questionService.checkTimer();

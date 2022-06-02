@@ -5,15 +5,10 @@ import { QUESTIONS_COUNT } from '../consts';
 import { shuffleArray } from '../functions';
 import { HttpClient } from '@angular/common/http';
 
-
-
-
 @Injectable({
   providedIn: 'root',
 })
-
 export class DataService {
-
   quiz = '';
 
   data!: DataModel[];
@@ -36,9 +31,7 @@ export class DataService {
     timerValue: 20,
   };
 
-  constructor(
-    public http: HttpClient,
-  ) {
+  constructor(public http: HttpClient) {
     this.imagesChange.subscribe((value) => {
       this.images = value;
     });
@@ -69,19 +62,18 @@ export class DataService {
     this.http.get<DataModel[]>('./assets/data.json').subscribe((data) => {
       this.data = data;
     });
-
   }
 
   getRoundData(categoryIndex: number) {
     if (this.quiz === 'artists') {
       this.round = this.data.slice(
         categoryIndex * QUESTIONS_COUNT,
-        categoryIndex * QUESTIONS_COUNT + QUESTIONS_COUNT,
+        categoryIndex * QUESTIONS_COUNT + QUESTIONS_COUNT
       );
     } else {
       this.round = this.data.slice(
         categoryIndex * QUESTIONS_COUNT + 120,
-        categoryIndex * QUESTIONS_COUNT + QUESTIONS_COUNT + 120,
+        categoryIndex * QUESTIONS_COUNT + QUESTIONS_COUNT + 120
       );
     }
     this.round = shuffleArray(this.round);
@@ -93,10 +85,12 @@ export class DataService {
     if (this.quiz === 'artists') {
       start = 0;
     } else {
-      start = Math.floor(this.data.length / 2) ;
+      start = Math.floor(this.data.length / 2);
     }
 
-    const imageNums = new Array(12).fill(start).map((x: number, i) => x + 10 * i);
+    const imageNums = new Array(12)
+      .fill(start)
+      .map((x: number, i) => x + 10 * i);
     this.imagesChange.next(imageNums);
   }
 
@@ -133,5 +127,4 @@ export class DataService {
     settings[field] = value;
     this.setSettings(settings);
   }
-
 }

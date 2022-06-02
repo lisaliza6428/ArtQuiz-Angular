@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser'; 
+import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './core/components/footer/footer.component';
@@ -50,11 +50,7 @@ import { HttpClientModule } from '@angular/common/http';
     NgxPaginationModule,
     HttpClientModule,
   ],
-  providers: [
-    DataService,
-    QuestionService,
-    ModalActionsService,
-  ],
+  providers: [DataService, QuestionService, ModalActionsService],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

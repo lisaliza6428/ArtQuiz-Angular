@@ -5,13 +5,11 @@ import { DataService } from './data.service';
 @Injectable({
   providedIn: 'root',
 })
-
 export class ModalActionsService {
-
   constructor(
     public questionService: QuestionService,
-    public dataService: DataService,
-  ) { }
+    public dataService: DataService
+  ) {}
 
   modalAction(modalData: any) {
     switch (modalData.modal) {

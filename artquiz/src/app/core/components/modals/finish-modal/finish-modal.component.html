@@ -1,11 +1,28 @@
-
-
-   <div class="finish">
-    <img class="finish__image" src="/assets/svg/finish_round_cup.svg" width="166" alt="">
-    <div class="finish__text">Congratulations!</div>
-    <div class="finish__score">{{modalData.score}}/10!</div>
-    <div class="finish__wrapper">
-      <button type="button" routerLink="/start" class="finish__button" mat-dialog-close>Home</button>
-      <button type="button" routerLink="/categories" class="finish__button" mat-dialog-close>Next Quiz</button>
-    </div>
+<div class="finish">
+  <img
+    class="finish__image"
+    src="/assets/svg/finish_round_cup.svg"
+    width="166"
+    alt=""
+  />
+  <div class="finish__text">Congratulations!</div>
+  <div class="finish__score">{{ modalData.score }}/10!</div>
+  <div class="finish__wrapper">
+    <button
+      type="button"
+      routerLink="/start"
+      class="finish__button"
+      mat-dialog-close
+    >
+      Home
+    </button>
+    <button
+      type="button"
+      routerLink="/categories"
+      class="finish__button"
+      mat-dialog-close
+    >
+      Next Quiz
+    </button>
   </div>
+</div>

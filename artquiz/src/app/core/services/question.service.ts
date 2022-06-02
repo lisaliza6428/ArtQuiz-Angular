@@ -12,7 +12,6 @@ import { PictureModalComponent } from '../components/modals/picture-modal/pictur
   providedIn: 'root',
 })
 export class QuestionService {
-
   timer = true;
 
   timerChange: Subject<boolean> = new Subject<boolean>();
@@ -48,7 +47,7 @@ export class QuestionService {
   constructor(
     public dataService: DataService,
     public router: Router,
-    public matDialog: MatDialog,
+    public matDialog: MatDialog
   ) {
     this.round = this.dataService.round;
     this.timerSec = this.dataService.getSettings().timerValue;
@@ -85,7 +84,10 @@ export class QuestionService {
     while (wrongVariants.length !== wrongVariantsCount) {
       let variant;
       variant = this.dataService.data[getRandomNumber(0, dataLength)];
-      if (+variant.imageNum !== +this.rightAnswer.imageNum && variant.authorEN !== this.rightAnswer.authorEN) {
+      if (
+        +variant.imageNum !== +this.rightAnswer.imageNum &&
+        variant.authorEN !== this.rightAnswer.authorEN
+      ) {
         wrongVariants.push(variant);
       }
     }
@@ -191,7 +193,6 @@ export class QuestionService {
     };
     this.matDialog.open(PictureModalComponent, dialogConfig);
   }
-
 
   startTimer(time: number) {
     this.renderTimerValue(time);

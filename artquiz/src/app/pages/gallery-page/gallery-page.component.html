@@ -1,8 +1,8 @@
 <app-header currentPage="Gallery"></app-header>
 <div class="wrapper">
-
   <div class="controls">
-    <select class="select__count" name="" id="" (change)="change($event)"> Show
+    <select class="select__count" name="" id="" (change)="change($event)">
+      Show
       <option value="5">5</option>
       <option value="10" selected>10</option>
       <option value="15">15</option>
@@ -15,7 +15,8 @@
       <option value="50">50</option>
     </select>
 
-    <select class="select__sort" name="" id="" (change)="sortAuthor($event)"> Sort
+    <select class="select__sort" name="" id="" (change)="sortAuthor($event)">
+      Sort
       <option value="authorAZ" selected>Author (A-Z)</option>
       <option value="authorZA">Author (Z-A)</option>
       <option value="pictureAZ">Picture (A-Z)</option>
@@ -25,28 +26,44 @@
     </select>
 
     <pagination-controls
-    class="custom-pagination"
+      class="custom-pagination"
       [maxSize]="6"
       [previousLabel]="''"
       [nextLabel]="''"
       (pageChange)="currentPage = $event"
-      align="center">
+      align="center"
+    >
     </pagination-controls>
 
-    <input class="search" type="text" placeholder="Search..." [(ngModel)]="searchValue"(input)="show()">
+    <input
+      class="search"
+      type="text"
+      placeholder="Search..."
+      [(ngModel)]="searchValue"
+      (input)="show()"
+    />
   </div>
 
   <div class="cards">
-    <div class="picture" *ngFor="let picture of dataService.data |
-     search: searchValue  | sort: sortValue | paginate: { itemsPerPage, currentPage }  ">
-      <img class="picture__img" (click)="showDescription(picture)"
-        src="../../../assets/img/{{picture.imageNum}}.webp" alt="Picture">
+    <div
+      class="picture"
+      *ngFor="
+        let picture of dataService.data
+          | search: searchValue
+          | sort: sortValue
+          | paginate
+            : { itemsPerPage: this.itemsPerPage, currentPage: this.currentPage }
+      "
+    >
+      <img
+        class="picture__img"
+        (click)="showDescription(picture)"
+        src="../../../assets/img/{{ picture.imageNum }}.webp"
+        alt="Picture"
+      />
     </div>
-    <ng-container *ngIf="(dataService.data | search: searchValue) as result">
-      <p class="message" *ngIf="result.length === 0">Not found</p>  
+    <ng-container *ngIf="dataService.data | search: searchValue as result">
+      <p class="message" *ngIf="result.length === 0">Not found</p>
     </ng-container>
   </div>
-
 </div>
-
-
