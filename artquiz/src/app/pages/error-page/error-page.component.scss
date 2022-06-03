@@ -1,0 +1,18 @@
+.error {
+  position: absolute;
+  top: calc(50% - 90px);
+  left: calc(50% - 90px);
+  text-align: center;
+  .error__text {
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 10px;
+  }
+  .error__link {
+    border-bottom: 1px solid white;
+    transition: 0.5s;
+    &:hover {
+      color: #ffbca2;
+    }
+  }
+}

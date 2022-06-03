@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { FinishModalComponent } from '../components/modals/finish-modal/finish-modal.component';
 import { PictureModalComponent } from '../components/modals/picture-modal/picture-modal.component';
+import { QUESTIONS_COUNT } from '../consts';
 
 @Injectable({
   providedIn: 'root',
@@ -34,7 +35,7 @@ export class QuestionService {
 
   currentIndexChange: Subject<number> = new Subject<number>();
 
-  roundAnswers: number[] = new Array(10).fill(0);
+  roundAnswers: number[] = new Array(QUESTIONS_COUNT).fill(0);
 
   roundAnswersChange: Subject<number[]> = new Subject<number[]>();
 
@@ -75,7 +76,7 @@ export class QuestionService {
     this.timerSec = this.dataService.getSettings().timerValue;
   }
 
-  public generateVariants() {
+  public generateQuestion() {
     this.rightAnswer = this.dataService.round[this.currentIndex];
     this.rightAnswerChange.next(this.rightAnswer);
     const dataLength = this.dataService.data.length - 1;
@@ -92,9 +93,10 @@ export class QuestionService {
       }
     }
     const random = shuffleArray([...wrongVariants, this.rightAnswer]);
-    this.timerSec = this.dataService.getSettings().timerValue;
     this.variantsChange.next(random);
+
     if (this.timer) {
+      this.timerSec = this.dataService.getSettings().timerValue;
       this.startTimer(+this.timerSec);
     }
   }
@@ -102,22 +104,22 @@ export class QuestionService {
   public quitQuiz() {
     this.timerLineWidth = 0;
     this.currentIndexChange.next(0);
-    this.roundAnswersChange.next(new Array(10).fill(0));
+    this.roundAnswersChange.next(new Array(QUESTIONS_COUNT).fill(0));
     this.router.navigate(['/categories']);
   }
 
   public checkFinish() {
     this.timerLineWidth = 0;
     let index = this.currentIndex + 1;
-    if (index === 10) {
+    if (index === QUESTIONS_COUNT) {
       this.finishRoundActions();
     } else {
       this.currentIndexChange.next(index);
-      this.generateVariants();
+      this.generateQuestion();
     }
   }
 
-  checkAnswer(e: Event, answer: number) {
+  public checkAnswer(e: Event, answer: number) {
     this.checkTimer();
     let isCorrect = '';
     if (+this.rightAnswer.imageNum === answer) {
@@ -142,7 +144,7 @@ export class QuestionService {
     this.matDialog.open(PictureModalComponent, dialogConfig);
   }
 
-  finishRoundActions() {
+  public finishRoundActions() {
     this.updateAnswersArray();
     this.getSound('finish');
     const dialogConfig = new MatDialogConfig();
@@ -152,18 +154,18 @@ export class QuestionService {
     };
     this.matDialog.open(FinishModalComponent, dialogConfig);
     this.currentIndexChange.next(0);
-    this.roundAnswers = new Array(10).fill(0);
+    this.roundAnswers = new Array(QUESTIONS_COUNT).fill(0);
     this.roundAnswersChange.next(this.roundAnswers);
   }
 
-  checkTimer() {
+  public checkTimer() {
     if (this.timer) {
       clearInterval(this.currentTimer);
       clearInterval(this.currentTimerAnimation);
     }
   }
 
-  updateAnswersArray() {
+  public updateAnswersArray() {
     const arr = this.dataService.getAnswersArray();
     this.round.forEach((roundItem, index) => {
       let imageNum = roundItem.imageNum;
@@ -173,7 +175,7 @@ export class QuestionService {
     this.dataService.setAnswersArray(arr);
   }
 
-  getSound(answer: string) {
+  public getSound(answer: string) {
     const audio = new Audio();
     const settings = this.dataService.getSettings();
     audio.volume = settings.volume;
@@ -181,7 +183,7 @@ export class QuestionService {
     audio.play();
   }
 
-  timeIsOver() {
+  public checkIsTimeOver() {
     this.getSound('wrong');
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
@@ -194,14 +196,14 @@ export class QuestionService {
     this.matDialog.open(PictureModalComponent, dialogConfig);
   }
 
-  startTimer(time: number) {
+  public startTimer(time: number) {
     this.renderTimerValue(time);
-    this.progressAnimation(time);
+    this.startAnimation(time);
     const timer = () => {
       time -= 1;
       if (time <= 0) {
         this.checkTimer();
-        this.timeIsOver();
+        this.checkIsTimeOver();
         this.timerSecChange.next(`0${0}`);
       } else if (time <= 9) {
         this.timerSecChange.next(`0${time}`);
@@ -212,7 +214,7 @@ export class QuestionService {
     this.currentTimer = setInterval(timer, 1000);
   }
 
-  renderTimerValue(time: number) {
+  public renderTimerValue(time: number) {
     const number = 9;
     if (time <= number) {
       this.timerSecChange.next(`0${time}`);
@@ -221,10 +223,11 @@ export class QuestionService {
     }
   }
 
-  progressAnimation(time: number) {
+  public startAnimation(time: number) {
     let width = 0;
+    const maxWidth = 100;
     const animate = () => {
-      if (width >= 100) {
+      if (width >= maxWidth) {
         clearInterval(this.currentTimerAnimation);
       } else {
         width += 1;

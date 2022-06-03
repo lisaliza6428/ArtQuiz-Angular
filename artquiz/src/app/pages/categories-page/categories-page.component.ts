@@ -18,8 +18,8 @@ export class CategoriesPageComponent {
 
   constructor(
     public dataService: DataService,
-    public router: Router,
-    public questionService: QuestionService
+    public questionService: QuestionService,
+    public router: Router
   ) {}
 
   checkClick(e: Event, id: number) {
@@ -30,7 +30,7 @@ export class CategoriesPageComponent {
     ) {
       this.dataService.getRoundData(id);
       this.router.navigate(['/question']);
-      this.questionService.generateVariants();
+      this.questionService.generateQuestion();
     }
 
     if (className.includes('card__score')) {
@@ -46,7 +46,7 @@ export class CategoriesPageComponent {
       .reduce((x: number, y: number) => +x + +y, 0);
     if (results) {
       this.none = '';
-      return `${results}/10`;
+      return `${results}/${QUESTIONS_COUNT}`;
     }
     this.none = 'none';
     return '';

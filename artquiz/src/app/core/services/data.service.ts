@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DataModel } from '../models/response';
 import { Subject } from 'rxjs';
-import { QUESTIONS_COUNT } from '../consts';
+import { QUESTIONS_COUNT, DATA_ITEMS_COUNT, ROUNDS_COUNT } from '../consts';
 import { shuffleArray } from '../functions';
 import { HttpClient } from '@angular/common/http';
 
@@ -72,8 +72,8 @@ export class DataService {
       );
     } else {
       this.round = this.data.slice(
-        categoryIndex * QUESTIONS_COUNT + 120,
-        categoryIndex * QUESTIONS_COUNT + QUESTIONS_COUNT + 120
+        categoryIndex * QUESTIONS_COUNT + DATA_ITEMS_COUNT,
+        categoryIndex * QUESTIONS_COUNT + QUESTIONS_COUNT + DATA_ITEMS_COUNT
       );
     }
     this.round = shuffleArray(this.round);
@@ -88,16 +88,16 @@ export class DataService {
       start = Math.floor(this.data.length / 2);
     }
 
-    const imageNums = new Array(12)
+    const imageNums = new Array(ROUNDS_COUNT)
       .fill(start)
-      .map((x: number, i) => x + 10 * i);
+      .map((x: number, i: number) => x + QUESTIONS_COUNT * i);
     this.imagesChange.next(imageNums);
   }
 
   getAnswersArray() {
     const arr = localStorage.getItem('answersArray');
     if (arr !== null) return JSON.parse(arr);
-    return new Array(240).fill('0');
+    return new Array(DATA_ITEMS_COUNT * 2).fill('0');
   }
 
   setAnswersArray(array: number[]) {
@@ -105,7 +105,10 @@ export class DataService {
   }
 
   clearAnswersArray() {
-    localStorage.setItem('answersArray', JSON.stringify(Array(240).fill('0')));
+    localStorage.setItem(
+      'answersArray',
+      JSON.stringify(Array(DATA_ITEMS_COUNT * 2).fill('0'))
+    );
   }
 
   getSettings() {
@@ -122,7 +125,7 @@ export class DataService {
     localStorage.setItem('settings', JSON.stringify(this.defaultSettings));
   }
 
-  updateSettings(field: string, value: any) {
+  updateSettings(field: string, value: string | number) {
     const settings = this.getSettings();
     settings[field] = value;
     this.setSettings(settings);

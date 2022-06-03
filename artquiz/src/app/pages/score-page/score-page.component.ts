@@ -3,6 +3,7 @@ import { DataService } from 'src/app/core/services/data.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { PictureModalComponent } from '../../core/components/modals/picture-modal/picture-modal.component';
 import { DataModel } from '../../core/models/response';
+import { QUESTIONS_COUNT } from '../../core/consts';
 
 @Component({
   selector: 'app-score-page',
@@ -10,6 +11,8 @@ import { DataModel } from '../../core/models/response';
   styleUrls: ['./score-page.component.scss'],
 })
 export class ScorePageComponent implements OnInit {
+  maxScore = QUESTIONS_COUNT;
+
   score = 0;
 
   constructor(public dataService: DataService, public matDialog: MatDialog) {}
@@ -24,7 +27,7 @@ export class ScorePageComponent implements OnInit {
     )[0].imageNum;
     const arr = this.dataService.getAnswersArray();
     const results = arr
-      .slice(imageNum, imageNum + 10)
+      .slice(imageNum, imageNum + QUESTIONS_COUNT)
       .reduce((x: number, y: number) => +x + +y, 0);
     this.score = results;
   }

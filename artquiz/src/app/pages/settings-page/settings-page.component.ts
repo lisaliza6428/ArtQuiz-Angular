@@ -31,7 +31,6 @@ export class SettingsPageComponent implements OnInit {
   }
 
   handleTimerChange(event: Event) {
-    console.log((event.target as HTMLInputElement).checked);
     const isChecked = (event.target as HTMLInputElement).checked;
     if (isChecked) {
       this.questionService.timerChange.next(true);
