@@ -74,6 +74,7 @@ export class QuestionService {
       this.timerSec = value;
     });
     this.timerSec = this.dataService.getSettings().timerValue;
+    this.timer = this.dataService.getSettings().timer;
   }
 
   public generateQuestion() {

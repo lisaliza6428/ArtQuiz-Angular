@@ -125,7 +125,7 @@ export class DataService {
     localStorage.setItem('settings', JSON.stringify(this.defaultSettings));
   }
 
-  updateSettings(field: string, value: string | number) {
+  updateSettings(field: string, value: string | number | boolean) {
     const settings = this.getSettings();
     settings[field] = value;
     this.setSettings(settings);

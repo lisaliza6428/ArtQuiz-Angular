@@ -34,8 +34,10 @@ export class SettingsPageComponent implements OnInit {
     const isChecked = (event.target as HTMLInputElement).checked;
     if (isChecked) {
       this.questionService.timerChange.next(true);
+      this.dataService.updateSettings('timer', true);
     } else {
       this.questionService.timerChange.next(false);
+      this.dataService.updateSettings('timer', false);
     }
   }
 
