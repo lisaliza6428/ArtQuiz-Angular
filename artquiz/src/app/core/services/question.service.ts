@@ -19,29 +19,17 @@ export class QuestionService {
 
   timerSec = '';
 
-  timerSecChange: Subject<string> = new Subject<string>();
-
-  round!: DataModel[];
-
   variants!: DataModel[];
-
-  variantsChange: Subject<DataModel[]> = new Subject<DataModel[]>();
 
   rightAnswer!: DataModel;
 
-  rightAnswerChange: Subject<DataModel> = new Subject<DataModel>();
-
   currentIndex = 0;
-
-  currentIndexChange: Subject<number> = new Subject<number>();
 
   roundAnswers: number[] = new Array(QUESTIONS_COUNT).fill(0);
 
-  roundAnswersChange: Subject<number[]> = new Subject<number[]>();
+  currentTimer!: ReturnType<typeof setTimeout>;
 
-  currentTimer!: any;
-
-  currentTimerAnimation!: any;
+  currentTimerAnimation!: ReturnType<typeof setTimeout>;
 
   timerLineWidth = 0;
 
@@ -50,28 +38,8 @@ export class QuestionService {
     public router: Router,
     public matDialog: MatDialog
   ) {
-    this.round = this.dataService.round;
-    this.timerSec = this.dataService.getSettings().timerValue;
-    this.variantsChange.subscribe((value: DataModel[]) => {
-      this.variants = value;
-    });
-    this.currentIndexChange.subscribe((value: number) => {
-      this.currentIndex = value;
-    });
-    this.rightAnswerChange.subscribe((value: DataModel) => {
-      this.rightAnswer = value;
-    });
-    this.dataService.roundChange.subscribe((value: DataModel[]) => {
-      this.round = value;
-    });
-    this.roundAnswersChange.subscribe((value: number[]) => {
-      this.roundAnswers = value;
-    });
     this.timerChange.subscribe((value: boolean) => {
       this.timer = value;
-    });
-    this.timerSecChange.subscribe((value: string) => {
-      this.timerSec = value;
     });
     this.timerSec = this.dataService.getSettings().timerValue;
     this.timer = this.dataService.getSettings().timer;
@@ -79,7 +47,6 @@ export class QuestionService {
 
   public generateQuestion() {
     this.rightAnswer = this.dataService.round[this.currentIndex];
-    this.rightAnswerChange.next(this.rightAnswer);
     const dataLength = this.dataService.data.length - 1;
     let wrongVariants: DataModel[] = [...new Set([])];
     const wrongVariantsCount = 3;
@@ -94,7 +61,7 @@ export class QuestionService {
       }
     }
     const random = shuffleArray([...wrongVariants, this.rightAnswer]);
-    this.variantsChange.next(random);
+    this.variants = random;
 
     if (this.timer) {
       this.timerSec = this.dataService.getSettings().timerValue;
@@ -104,8 +71,8 @@ export class QuestionService {
 
   public quitQuiz() {
     this.timerLineWidth = 0;
-    this.currentIndexChange.next(0);
-    this.roundAnswersChange.next(new Array(QUESTIONS_COUNT).fill(0));
+    this.currentIndex = 0;
+    this.roundAnswers = new Array(QUESTIONS_COUNT).fill(0);
     this.router.navigate(['/categories']);
   }
 
@@ -115,7 +82,7 @@ export class QuestionService {
     if (index === QUESTIONS_COUNT) {
       this.finishRoundActions();
     } else {
-      this.currentIndexChange.next(index);
+      this.currentIndex = index;
       this.generateQuestion();
     }
   }
@@ -128,7 +95,6 @@ export class QuestionService {
       isCorrect = 'correct';
       this.getSound('correct');
       this.roundAnswers[this.currentIndex] = 1;
-      this.roundAnswersChange.next(this.roundAnswers);
     } else {
       (e.target as HTMLElement).classList.add('wrong');
       isCorrect = 'wrong';
@@ -154,9 +120,8 @@ export class QuestionService {
       score: this.roundAnswers.reduce((x, y) => x + y, 0),
     };
     this.matDialog.open(FinishModalComponent, dialogConfig);
-    this.currentIndexChange.next(0);
+    this.currentIndex = 0;
     this.roundAnswers = new Array(QUESTIONS_COUNT).fill(0);
-    this.roundAnswersChange.next(this.roundAnswers);
   }
 
   public checkTimer() {
@@ -168,7 +133,7 @@ export class QuestionService {
 
   public updateAnswersArray() {
     const arr = this.dataService.getAnswersArray();
-    this.round.forEach((roundItem, index) => {
+    this.dataService.round.forEach((roundItem, index) => {
       let imageNum = roundItem.imageNum;
       let answer = this.roundAnswers[index];
       arr[imageNum] = `${answer}`;
@@ -205,11 +170,11 @@ export class QuestionService {
       if (time <= 0) {
         this.checkTimer();
         this.checkIsTimeOver();
-        this.timerSecChange.next(`0${0}`);
+        this.timerSec = `0${0}`;
       } else if (time <= 9) {
-        this.timerSecChange.next(`0${time}`);
+        this.timerSec = `0${time}`;
       } else {
-        this.timerSecChange.next(`${time}`);
+        this.timerSec = `${time}`;
       }
     };
     this.currentTimer = setInterval(timer, 1000);
@@ -218,9 +183,9 @@ export class QuestionService {
   public renderTimerValue(time: number) {
     const number = 9;
     if (time <= number) {
-      this.timerSecChange.next(`0${time}`);
+      this.timerSec = `0${time}`;
     } else {
-      this.timerSecChange.next(`${time}`);
+      this.timerSec = `${time}`;
     }
   }
 

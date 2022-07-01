@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { DataModel } from '../models/response';
-import { Subject } from 'rxjs';
 import { QUESTIONS_COUNT, DATA_ITEMS_COUNT, ROUNDS_COUNT } from '../consts';
 import { shuffleArray } from '../functions';
 import { HttpClient } from '@angular/common/http';
@@ -13,17 +12,9 @@ export class DataService {
 
   data!: DataModel[];
 
-  dataChange: Subject<DataModel[]> = new Subject<DataModel[]>();
-
   round!: DataModel[];
 
-  roundChange: Subject<DataModel[]> = new Subject<DataModel[]>();
-
   images!: number[];
-
-  imagesChange: Subject<number[]> = new Subject<number[]>();
-
-  answersArray!: number[];
 
   defaultSettings = {
     volume: 0.2,
@@ -32,15 +23,6 @@ export class DataService {
   };
 
   constructor(public http: HttpClient) {
-    this.imagesChange.subscribe((value) => {
-      this.images = value;
-    });
-    this.roundChange.subscribe((value) => {
-      this.round = value;
-    });
-    this.dataChange.subscribe((value) => {
-      this.data = value;
-    });
     this.getData();
   }
 
@@ -77,7 +59,6 @@ export class DataService {
       );
     }
     this.round = shuffleArray(this.round);
-    this.roundChange.next(this.round);
   }
 
   getCategoryImages() {
@@ -91,7 +72,7 @@ export class DataService {
     const imageNums = new Array(ROUNDS_COUNT)
       .fill(start)
       .map((x: number, i: number) => x + QUESTIONS_COUNT * i);
-    this.imagesChange.next(imageNums);
+    this.images = imageNums;
   }
 
   getAnswersArray() {
