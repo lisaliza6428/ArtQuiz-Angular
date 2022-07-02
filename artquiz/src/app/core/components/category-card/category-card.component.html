@@ -1,0 +1,18 @@
+<div class="card" (click)="checkClick($event, index)">
+  <div class="card__top">
+    <div class="card__category">{{ genres[index] }}</div>
+    <div class="card__score">{{ score }}</div>
+  </div>
+  <div class="card__box">
+    <img
+      class="card__image"
+      [appCategoryStyle]="imageNum"
+      src="/assets/img/{{ imageNum }}.webp"
+      alt="Picture"
+    />
+    <div class="card__label {{ labelAgainClass }}">
+      <img class="card__label-image" src="/assets/svg/again.svg" />
+      Play again
+    </div>
+  </div>
+</div>

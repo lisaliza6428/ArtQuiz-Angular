@@ -24,6 +24,7 @@ import { SearchPipe } from './core/pipes/search.pipe';
 import { CategoryStyleDirective } from './core/directives/category-style.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { CategoryCardComponent } from './core/components/category-card/category-card.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     SortPipe,
     SearchPipe,
     CategoryStyleDirective,
+    CategoryCardComponent,
   ],
   imports: [
     BrowserModule,
