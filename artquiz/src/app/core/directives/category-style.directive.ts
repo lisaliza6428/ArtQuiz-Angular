@@ -6,7 +6,7 @@ import { QUESTIONS_COUNT } from '../consts';
   selector: '[appCategoryStyle]',
 })
 export class CategoryStyleDirective implements OnInit {
-  @Input('appCategoryStyle') imageNum: any;
+  @Input('appCategoryStyle') imageNum!: number;
 
   constructor(
     private elementRef: ElementRef,

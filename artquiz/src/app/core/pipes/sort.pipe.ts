@@ -8,8 +8,8 @@ import { DataService } from '../services/data.service';
 export class SortPipe implements PipeTransform {
   constructor(public dataService: DataService) {}
 
-  transform(data: any, sort: string) {
-    if (!data || !sort) return data;
+  transform(data: DataModel[], sort: string): DataModel[] {
+    if (!sort) return data;
     switch (sort) {
       case 'authorAZ': {
         return [...data].sort((a: DataModel, b: DataModel) =>
@@ -45,6 +45,5 @@ export class SortPipe implements PipeTransform {
         return [...data];
       }
     }
-    return null;
   }
 }

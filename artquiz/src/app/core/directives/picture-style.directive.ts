@@ -6,7 +6,7 @@ import { DataService } from '../services/data.service';
   selector: '[appPictureStyle]',
 })
 export class PictureStyleDirective implements OnInit {
-  @Input('appPictureStyle') imageNum: any;
+  @Input('appPictureStyle') imageNum!: number;
 
   constructor(
     private elementRef: ElementRef,
