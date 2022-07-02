@@ -105,7 +105,7 @@ export class QuestionService {
     dialogConfig.data = {
       question: true,
       gallery: false,
-      answer: this.rightAnswer,
+      picture: this.rightAnswer,
       isCorrect: isCorrect,
     };
     this.matDialog.open(PictureModalComponent, dialogConfig);
@@ -156,7 +156,7 @@ export class QuestionService {
     dialogConfig.data = {
       question: true,
       gallery: false,
-      answer: this.rightAnswer,
+      picture: this.rightAnswer,
       isCorrect: 'wrong',
     };
     this.matDialog.open(PictureModalComponent, dialogConfig);

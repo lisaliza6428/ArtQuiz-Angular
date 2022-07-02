@@ -33,7 +33,7 @@ export class GalleryPageComponent {
     dialogConfig.data = {
       question: false,
       gallery: true,
-      answer: picture,
+      picture: picture,
     };
     this.matDialog.open(PictureModalComponent, dialogConfig);
   }

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { QuestionService } from '../../../services/question.service';
 import { DataService } from '../../../services/data.service';
 import { ModalActionsService } from '../../../services/modal-actions.service';
+import { DialogConfigConfirmModel } from '../../../../core/models/dialog-config';
 
 @Component({
   selector: 'app-confirm-modal',
@@ -13,7 +14,7 @@ import { ModalActionsService } from '../../../services/modal-actions.service';
 export class ConfirmModalComponent {
   constructor(
     public dialogRef: MatDialogRef<ConfirmModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public modalData: any,
+    @Inject(MAT_DIALOG_DATA) public modalData: DialogConfigConfirmModel,
     public router: Router,
     public questionService: QuestionService,
     public dataService: DataService,

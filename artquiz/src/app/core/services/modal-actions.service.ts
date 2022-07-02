@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { QuestionService } from './question.service';
 import { DataService } from './data.service';
+import { DialogConfigConfirmModel } from '../models/dialog-config';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ export class ModalActionsService {
     public dataService: DataService
   ) {}
 
-  modalAction(modalData: any) {
+  modalAction(modalData: DialogConfigConfirmModel) {
     switch (modalData.modal) {
       case 'leaveQuestion':
         this.questionService.quitQuiz();
@@ -26,7 +27,7 @@ export class ModalActionsService {
     }
   }
 
-  modalCancelAction(modalData: any) {
+  modalCancelAction(modalData: DialogConfigConfirmModel) {
     switch (modalData.modal) {
       case 'leaveQuestion':
         if (this.questionService.timer) {

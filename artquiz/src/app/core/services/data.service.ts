@@ -3,6 +3,7 @@ import { DataModel } from '../models/response';
 import { QUESTIONS_COUNT, DATA_ITEMS_COUNT, ROUNDS_COUNT } from '../consts';
 import { shuffleArray } from '../functions';
 import { HttpClient } from '@angular/common/http';
+import { SettingsModel } from '../models/settings';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class DataService {
 
   images!: number[];
 
-  defaultSettings = {
+  defaultSettings: SettingsModel = {
     volume: 0.2,
     timer: true,
     timerValue: 20,
@@ -98,7 +99,7 @@ export class DataService {
     return this.defaultSettings;
   }
 
-  setSettings(settings: any) {
+  setSettings(settings: SettingsModel) {
     localStorage.setItem('settings', JSON.stringify(settings));
   }
 

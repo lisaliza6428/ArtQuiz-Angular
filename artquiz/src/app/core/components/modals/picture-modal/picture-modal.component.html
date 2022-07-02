@@ -2,7 +2,7 @@
   <div class="popup-image">
     <img
       class="popup-image__picture"
-      src="../../../../assets/img/{{ modalData.answer.imageNum }}.webp"
+      src="../../../../assets/img/{{ modalData.picture?.imageNum }}.webp"
       alt="picture"
     />
     <img
@@ -12,9 +12,9 @@
       alt="picture"
     />
   </div>
-  <h3 class="picture-name">{{ modalData.answer.authorEN }}</h3>
-  <div class="picture-info">{{ modalData.answer.nameEN }}</div>
-  <div class="picture-info">{{ modalData.answer.year }}</div>
+  <h3 class="picture-name">{{ modalData.picture?.authorEN }}</h3>
+  <div class="picture-info">{{ modalData.picture?.nameEN }}</div>
+  <div class="picture-info">{{ modalData.picture?.year }}</div>
   <button
     class="button next"
     *ngIf="modalData.question"
