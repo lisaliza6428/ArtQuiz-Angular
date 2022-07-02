@@ -4,15 +4,12 @@
   flex-direction: column;
   padding-top: 130px;
   @media (max-width: 600px) {
-    //padding-top: 120px;
   }
   .start-page__title {
     height: 165px;
     margin: 0 auto 40px auto;
     @media (max-width: 600px) {
       height: 95px;
-      //margin: 0 auto 50px auto;
-      //height: auto;
     }
   }
   .start-page__button {
@@ -65,7 +62,6 @@
     .settings__link {
       transform: rotate(90deg);
       transition: 1s;
-
     }
     .set {
       color: #ffbca2;

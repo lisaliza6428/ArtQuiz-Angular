@@ -11,8 +11,6 @@ import { DataModel } from 'src/app/core/models/response';
   styleUrls: ['./gallery-page.component.scss'],
 })
 export class GalleryPageComponent {
-  none = 'none';
-
   currentPage = 1;
 
   itemsPerPage = 10;

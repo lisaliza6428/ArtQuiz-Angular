@@ -25,8 +25,8 @@ export class ScorePageComponent implements OnInit {
     const imageNum = +this.dataService.round.sort(
       (x: DataModel, y: DataModel) => +x.imageNum - +y.imageNum
     )[0].imageNum;
-    const arr = this.dataService.getAnswersArray();
-    const results = arr
+    const answers = this.dataService.getAnswersArray();
+    const results = answers
       .slice(imageNum, imageNum + QUESTIONS_COUNT)
       .reduce((x: number, y: number) => +x + +y, 0);
     this.score = results;

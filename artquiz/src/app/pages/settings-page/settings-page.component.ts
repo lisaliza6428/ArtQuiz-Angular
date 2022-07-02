@@ -13,6 +13,12 @@ import { ConfirmModalComponent } from '../../core/components/modals/confirm-moda
 export class SettingsPageComponent implements OnInit {
   volumeValue!: number;
 
+  timerValueStep = 5;
+
+  minTimerValue = 5;
+
+  maxTimerValue = 30;
+
   constructor(
     public dataService: DataService,
     public questionService: QuestionService,
@@ -43,16 +49,16 @@ export class SettingsPageComponent implements OnInit {
 
   minusButtonAction() {
     let seconds = this.dataService.getSettings().timerValue;
-    if (+seconds > 5) {
-      seconds = +seconds - 5;
+    if (+seconds > this.minTimerValue) {
+      seconds = +seconds - this.timerValueStep;
       this.dataService.updateSettings('timerValue', seconds);
     }
   }
 
   plusButtonAction() {
     let seconds = this.dataService.getSettings().timerValue;
-    if (+seconds < 30) {
-      seconds = +seconds + 5;
+    if (+seconds < this.maxTimerValue) {
+      seconds = +seconds + this.timerValueStep;
       this.dataService.updateSettings('timerValue', seconds);
     }
   }

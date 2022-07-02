@@ -54,7 +54,9 @@
   <div class="settings__item-wrapper">
     <button
       class="settings__item-button"
-      [ngClass]="dataService.getSettings().timerValue === 5 ? 'disabled' : ''"
+      [ngClass]="
+        dataService.getSettings().timerValue === minTimerValue ? 'disabled' : ''
+      "
       type="button"
       (click)="minusButtonAction()"
     >
@@ -68,7 +70,9 @@
     <button
       class="settings__item-button"
       (click)="plusButtonAction()"
-      [ngClass]="dataService.getSettings().timerValue === 30 ? 'disabled' : ''"
+      [ngClass]="
+        dataService.getSettings().timerValue === maxTimerValue ? 'disabled' : ''
+      "
       type="button"
     >
       +
