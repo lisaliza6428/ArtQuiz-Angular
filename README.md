@@ -13,4 +13,4 @@ There is also a settings page where you can turn on/off the time game, change th
 
 Gallery page is created using ngx-pagination. Here you can explore masterpieces sorting them in the way you need. 
 
-The app is adaptive for screens from 1920px to 320px.
+The application is adaptive for screens from 1920px to 320px.
