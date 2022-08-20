@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { QuestionService } from '../../../services/question.service';
-import { QUESTIONS_COUNT } from '../../../../core/consts';
+import { QUESTIONS_COUNT } from '../../../shared/consts';
 import { DialogConfigModel } from 'src/app/core/models/dialog-config';
 
 @Component({

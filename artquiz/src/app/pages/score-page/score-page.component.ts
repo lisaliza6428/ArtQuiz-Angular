@@ -3,7 +3,7 @@ import { DataService } from 'src/app/core/services/data.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { PictureModalComponent } from '../../core/components/modals/picture-modal/picture-modal.component';
 import { DataModel } from '../../core/models/response';
-import { QUESTIONS_COUNT } from '../../core/consts';
+import { QUESTIONS_COUNT } from '../../core/shared/consts';
 
 @Component({
   selector: 'app-score-page',

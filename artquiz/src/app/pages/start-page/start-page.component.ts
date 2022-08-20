@@ -10,10 +10,6 @@ import { DataService } from '../../core/services/data.service';
 export class StartPageComponent {
   constructor(public dataService: DataService, public router: Router) {}
 
-  openGallery() {
-    this.router.navigate(['/gallery']);
-  }
-
   openArtistsQuiz() {
     this.dataService.setQuizType('artists');
     this.dataService.getCategoryImages();

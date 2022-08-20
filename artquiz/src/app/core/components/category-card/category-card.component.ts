@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { GENRES, QUESTIONS_COUNT } from '../../consts';
+import { GENRES, QUESTIONS_COUNT } from '../../shared/consts';
 import { DataService } from '../../services/data.service';
 import { QuestionService } from '../../services/question.service';
 import { Router } from '@angular/router';

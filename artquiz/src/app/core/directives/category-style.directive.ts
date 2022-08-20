@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Input, Renderer2, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
-import { QUESTIONS_COUNT } from '../consts';
+import { QUESTIONS_COUNT } from '../shared/consts';
 
 @Directive({
   selector: '[appCategoryStyle]',

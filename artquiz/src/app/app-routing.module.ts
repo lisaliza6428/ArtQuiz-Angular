@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoriesPageComponent } from './pages/categories-page/categories-page.component';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
-import { GalleryPageComponent } from './pages/gallery-page/gallery-page.component';
 import { QuestionPageComponent } from './pages/question-page/question-page.component';
 import { ScorePageComponent } from './pages/score-page/score-page.component';
 import { SettingsPageComponent } from './pages/settings-page/settings-page.component';
@@ -41,8 +40,8 @@ const routes: Routes = [
   },
   {
     path: 'gallery',
-    pathMatch: 'full',
-    component: GalleryPageComponent,
+    loadChildren: () =>
+      import('./gallery/gallery.module').then((m) => m.GalleryModule),
   },
   {
     path: '**',

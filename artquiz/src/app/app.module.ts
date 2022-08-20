@@ -13,18 +13,16 @@ import { QuestionService } from './core/services/question.service';
 import { ModalActionsService } from './core/services/modal-actions.service';
 import { ScorePageComponent } from './pages/score-page/score-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgMaterialModule } from './ng-material/ng-material.module';
+import { NgMaterialModule } from './core/shared/ng-material.module';
 import { FormsModule } from '@angular/forms';
-import { GalleryPageComponent } from './pages/gallery-page/gallery-page.component';
 import { PictureStyleDirective } from './core/directives/picture-style.directive';
-import { HeaderComponent } from './core/components/header/header.component';
-import { NgxPaginationModule } from 'ngx-pagination';
 import { SortPipe } from './core/pipes/sort.pipe';
 import { SearchPipe } from './core/pipes/search.pipe';
 import { CategoryStyleDirective } from './core/directives/category-style.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { CategoryCardComponent } from './core/components/category-card/category-card.component';
+import { SharedModule } from './core/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -36,9 +34,7 @@ import { CategoryCardComponent } from './core/components/category-card/category-
     QuestionPageComponent,
     ErrorPageComponent,
     ScorePageComponent,
-    GalleryPageComponent,
     PictureStyleDirective,
-    HeaderComponent,
     SortPipe,
     SearchPipe,
     CategoryStyleDirective,
@@ -50,8 +46,8 @@ import { CategoryCardComponent } from './core/components/category-card/category-
     BrowserAnimationsModule,
     NgMaterialModule,
     FormsModule,
-    NgxPaginationModule,
     HttpClientModule,
+    SharedModule,
   ],
   providers: [
     DataService,

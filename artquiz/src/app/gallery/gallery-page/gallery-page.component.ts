@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { DataService } from '../../core/services/data.service';
 import { QuestionService } from '../../core/services/question.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { PictureModalComponent } from '../../core/components/modals/picture-modal/picture-modal.component';
+import { PictureModalComponent } from 'src/app/core/components/modals/picture-modal/picture-modal.component';
 import { DataModel } from 'src/app/core/models/response';
 
 @Component({

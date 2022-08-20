@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DataModel } from '../models/response';
-import { QUESTIONS_COUNT, DATA_ITEMS_COUNT, ROUNDS_COUNT } from '../consts';
-import { shuffleArray } from '../functions';
+import { QUESTIONS_COUNT, DATA_ITEMS_COUNT, ROUNDS_COUNT } from '../shared/consts';
+import { shuffleArray } from '../shared/functions';
 import { HttpClient } from '@angular/common/http';
 import { SettingsModel } from '../models/settings';
 
