@@ -7,5 +7,9 @@ import { Component, Input } from '@angular/core';
 })
 export class HeaderComponent {
   @Input()
-  currentPage = '';
+  public currentPage: string;
+
+  constructor() {
+    this.currentPage = '';
+  }
 }

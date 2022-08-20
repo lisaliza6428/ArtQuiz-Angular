@@ -6,13 +6,15 @@ import { QUESTIONS_COUNT } from '../shared/consts';
   selector: '[appCategoryStyle]',
 })
 export class CategoryStyleDirective implements OnInit {
-  @Input('appCategoryStyle') imageNum!: number;
+  @Input('appCategoryStyle') public imageNum: number;
 
   constructor(
     private elementRef: ElementRef,
     private render: Renderer2,
     private dataService: DataService
-  ) {}
+  ) {
+    this.imageNum = 0;
+  }
 
   ngOnInit() {
     const answers = this.dataService.getAnswersArray();

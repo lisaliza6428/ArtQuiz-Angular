@@ -8,11 +8,11 @@ import { DialogConfigConfirmModel } from '../models/dialog-config';
 })
 export class ModalActionsService {
   constructor(
-    public questionService: QuestionService,
-    public dataService: DataService
+    private questionService: QuestionService,
+    private dataService: DataService
   ) {}
 
-  modalAction(modalData: DialogConfigConfirmModel) {
+  public modalAction(modalData: DialogConfigConfirmModel): void {
     switch (modalData.modal) {
       case 'leaveQuestion':
         this.questionService.quitQuiz();
@@ -27,7 +27,7 @@ export class ModalActionsService {
     }
   }
 
-  modalCancelAction(modalData: DialogConfigConfirmModel) {
+  public modalCancelAction(modalData: DialogConfigConfirmModel): void {
     switch (modalData.modal) {
       case 'leaveQuestion':
         if (this.questionService.timer) {

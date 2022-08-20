@@ -11,21 +11,26 @@ import { DataModel } from 'src/app/core/models/response';
   styleUrls: ['./gallery-page.component.scss'],
 })
 export class GalleryPageComponent {
-  currentPage = 1;
+  public currentPage: number;
 
-  itemsPerPage = 10;
+  public itemsPerPage: number;
 
-  sortValue = 'authorAZ';
+  public sortValue: string;
 
-  searchValue = '';
+  public searchValue: string;
 
   constructor(
     public dataService: DataService,
-    public questionService: QuestionService,
-    public matDialog: MatDialog
-  ) {}
+    private questionService: QuestionService,
+    private matDialog: MatDialog
+  ) {
+    this.currentPage = 1;
+    this.itemsPerPage = 10;
+    this.sortValue = 'authorAZ';
+    this.searchValue = '';
+  }
 
-  showDescription(picture: DataModel) {
+  public showDescription(picture: DataModel): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.data = {
@@ -36,12 +41,12 @@ export class GalleryPageComponent {
     this.matDialog.open(PictureModalComponent, dialogConfig);
   }
 
-  changePicturesCount(e: Event) {
+  public changePicturesCount(e: Event): void {
     const value = (e.target as HTMLSelectElement).value;
     this.itemsPerPage = +value;
   }
 
-  sortPictures(e: Event) {
+  public sortPictures(e: Event): void {
     const value = (e.target as HTMLSelectElement).value;
     this.sortValue = value;
   }

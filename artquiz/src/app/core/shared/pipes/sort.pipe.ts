@@ -6,7 +6,7 @@ import { DataService } from '../../services/data.service';
   name: 'sort',
 })
 export class SortPipe implements PipeTransform {
-  constructor(public dataService: DataService) {}
+  constructor(private dataService: DataService) {}
 
   transform(data: DataModel[], sort: string): DataModel[] {
     if (!sort) return data;
