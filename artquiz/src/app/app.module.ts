@@ -13,16 +13,14 @@ import { QuestionService } from './core/services/question.service';
 import { ModalActionsService } from './core/services/modal-actions.service';
 import { ScorePageComponent } from './pages/score-page/score-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgMaterialModule } from './core/shared/ng-material.module';
 import { FormsModule } from '@angular/forms';
 import { PictureStyleDirective } from './core/directives/picture-style.directive';
-import { SortPipe } from './core/pipes/sort.pipe';
-import { SearchPipe } from './core/pipes/search.pipe';
 import { CategoryStyleDirective } from './core/directives/category-style.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { CategoryCardComponent } from './core/components/category-card/category-card.component';
 import { SharedModule } from './core/shared/shared.module';
+import { NgMaterialModule } from './core/shared/ng-material.module';
 
 @NgModule({
   declarations: [
@@ -35,8 +33,6 @@ import { SharedModule } from './core/shared/shared.module';
     ErrorPageComponent,
     ScorePageComponent,
     PictureStyleDirective,
-    SortPipe,
-    SearchPipe,
     CategoryStyleDirective,
     CategoryCardComponent,
   ],
