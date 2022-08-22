@@ -6,13 +6,15 @@ import { DataService } from '../services/data.service';
   selector: '[appPictureStyle]',
 })
 export class PictureStyleDirective implements OnInit {
-  @Input('appPictureStyle') imageNum!: number;
+  @Input('appPictureStyle') public imageNum: number;
 
   constructor(
     private elementRef: ElementRef,
     private render: Renderer2,
     private dataService: DataService
-  ) {}
+  ) {
+    this.imageNum = 0;
+  }
 
   ngOnInit() {
     const answers = this.dataService.getAnswersArray();

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { GENRES, QUESTIONS_COUNT } from '../../consts';
+import { GENRES, QUESTIONS_COUNT } from '../../shared/consts';
 import { DataService } from '../../services/data.service';
 import { QuestionService } from '../../services/question.service';
 import { Router } from '@angular/router';
@@ -11,28 +11,34 @@ import { Router } from '@angular/router';
 })
 export class CategoryCardComponent implements OnInit {
   @Input()
-  imageNum!: number;
+  public imageNum: number;
 
   @Input()
-  index!: number;
+  public index: number;
 
-  labelAgainClass!: string;
+  public labelAgainClass: string;
 
-  score!: string | number;
+  public score: string | number;
 
-  genres = GENRES;
+  public genres: string[];
 
   constructor(
-    public dataService: DataService,
-    public questionService: QuestionService,
-    public router: Router
-  ) {}
+    private dataService: DataService,
+    private questionService: QuestionService,
+    private router: Router
+  ) {
+    this.imageNum = 0;
+    this.index = 0;
+    this.labelAgainClass = '';
+    this.score = 0;
+    this.genres = GENRES;
+  }
 
   ngOnInit(): void {
     this.defineCardView();
   }
 
-  checkClick(e: Event, index: number) {
+  public checkClick(e: Event, index: number): void {
     const className = (e.target as HTMLElement).className;
     if (
       className.includes('card__image') ||
@@ -49,7 +55,7 @@ export class CategoryCardComponent implements OnInit {
     }
   }
 
-  defineCardView() {
+  private defineCardView(): void {
     const answers = this.dataService.getAnswersArray();
     const results = answers
       .slice(this.imageNum, this.imageNum + QUESTIONS_COUNT)

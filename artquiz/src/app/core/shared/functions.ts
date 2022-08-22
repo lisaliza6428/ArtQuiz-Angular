@@ -1,4 +1,4 @@
-import { DataModel } from './models/response';
+import { DataModel } from '../models/response';
 
 export function getRandomNumber(min: number, max: number): number {
   let minNum = min;

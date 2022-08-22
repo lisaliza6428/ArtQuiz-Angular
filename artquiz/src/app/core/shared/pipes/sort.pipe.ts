@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { DataModel } from '../models/response';
-import { DataService } from '../services/data.service';
+import { DataModel } from '../../models/response';
+import { DataService } from '../../services/data.service';
 
 @Pipe({
   name: 'sort',
 })
 export class SortPipe implements PipeTransform {
-  constructor(public dataService: DataService) {}
+  constructor(private dataService: DataService) {}
 
   transform(data: DataModel[], sort: string): DataModel[] {
     if (!sort) return data;

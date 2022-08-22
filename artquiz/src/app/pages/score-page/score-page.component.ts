@@ -3,7 +3,7 @@ import { DataService } from 'src/app/core/services/data.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { PictureModalComponent } from '../../core/components/modals/picture-modal/picture-modal.component';
 import { DataModel } from '../../core/models/response';
-import { QUESTIONS_COUNT } from '../../core/consts';
+import { QUESTIONS_COUNT } from '../../core/shared/consts';
 
 @Component({
   selector: 'app-score-page',
@@ -11,17 +11,20 @@ import { QUESTIONS_COUNT } from '../../core/consts';
   styleUrls: ['./score-page.component.scss'],
 })
 export class ScorePageComponent implements OnInit {
-  maxScore = QUESTIONS_COUNT;
+  public maxScore: number;
 
-  score = 0;
+  public score: number;
 
-  constructor(public dataService: DataService, public matDialog: MatDialog) {}
+  constructor(public dataService: DataService, private matDialog: MatDialog) {
+    this.maxScore = QUESTIONS_COUNT;
+    this.score = 0;
+  }
 
   ngOnInit(): void {
     this.getScore();
   }
 
-  getScore() {
+  private getScore(): void {
     const imageNum = +this.dataService.round.sort(
       (x: DataModel, y: DataModel) => +x.imageNum - +y.imageNum
     )[0].imageNum;
@@ -32,7 +35,7 @@ export class ScorePageComponent implements OnInit {
     this.score = results;
   }
 
-  showDescription(picture: DataModel) {
+  public showDescription(picture: DataModel): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.data = {

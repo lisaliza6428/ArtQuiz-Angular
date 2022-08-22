@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PictureModalComponent } from '../core/components/modals/picture-modal/picture-modal.component';
+import { PictureModalComponent } from '../components/modals/picture-modal/picture-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button';
-import { ConfirmModalComponent } from '../core/components/modals/confirm-modal/confirm-modal.component';
-import { FinishModalComponent } from '../core/components/modals/finish-modal/finish-modal.component';
+import { ConfirmModalComponent } from '../components/modals/confirm-modal/confirm-modal.component';
+import { FinishModalComponent } from '../components/modals/finish-modal/finish-modal.component';
 import { RouterModule } from '@angular/router';
 
 @NgModule({

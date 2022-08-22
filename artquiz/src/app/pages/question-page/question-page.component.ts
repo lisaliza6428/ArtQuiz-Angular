@@ -13,10 +13,10 @@ export class QuestionPageComponent {
   constructor(
     public dataService: DataService,
     public questionService: QuestionService,
-    public matDialog: MatDialog
+    private matDialog: MatDialog
   ) {}
 
-  openConfirmModal() {
+  public openConfirmModal(): void {
     this.questionService.checkTimer();
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { DataModel } from '../models/response';
+import { DataModel } from '../../models/response';
 
 @Pipe({
   name: 'search',
