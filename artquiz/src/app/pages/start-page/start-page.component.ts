@@ -8,19 +8,15 @@ import { DataService } from '../../core/services/data.service';
   styleUrls: ['./start-page.component.scss'],
 })
 export class StartPageComponent {
-  constructor(public dataService: DataService, public router: Router) {}
+  constructor(private dataService: DataService, private router: Router) {}
 
-  openGallery() {
-    this.router.navigate(['/gallery']);
-  }
-
-  openArtistsQuiz() {
+  public openArtistsQuiz() {
     this.dataService.setQuizType('artists');
     this.dataService.getCategoryImages();
     this.router.navigate(['/categories']);
   }
 
-  openPicturesQuiz() {
+  public openPicturesQuiz() {
     this.dataService.setQuizType('pictures');
     this.dataService.getCategoryImages();
     this.router.navigate(['/categories']);

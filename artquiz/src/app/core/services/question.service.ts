@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { DataModel } from '../models/response';
 import { DataService } from './data.service';
-import { getRandomNumber, shuffleArray } from '../functions';
+import { getRandomNumber, shuffleArray } from '../shared/functions';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { FinishModalComponent } from '../components/modals/finish-modal/finish-modal.component';
 import { PictureModalComponent } from '../components/modals/picture-modal/picture-modal.component';
-import { QUESTIONS_COUNT } from '../consts';
+import { QUESTIONS_COUNT } from '../shared/consts';
 
 @Injectable({
   providedIn: 'root',

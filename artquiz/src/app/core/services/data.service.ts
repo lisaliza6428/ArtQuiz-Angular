@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { DataModel } from '../models/response';
-import { QUESTIONS_COUNT, DATA_ITEMS_COUNT, ROUNDS_COUNT } from '../consts';
-import { shuffleArray } from '../functions';
+import {
+  QUESTIONS_COUNT,
+  DATA_ITEMS_COUNT,
+  ROUNDS_COUNT,
+} from '../shared/consts';
+import { shuffleArray } from '../shared/functions';
 import { HttpClient } from '@angular/common/http';
 import { SettingsModel } from '../models/settings';
 
@@ -9,7 +13,7 @@ import { SettingsModel } from '../models/settings';
   providedIn: 'root',
 })
 export class DataService {
-  quiz = '';
+  quiz: string;
 
   data!: DataModel[];
 
@@ -17,13 +21,17 @@ export class DataService {
 
   images!: number[];
 
-  defaultSettings: SettingsModel = {
-    volume: 0.2,
-    timer: true,
-    timerValue: 20,
-  };
+  defaultSettings: SettingsModel;
 
   constructor(public http: HttpClient) {
+    this.quiz = '';
+
+    this.defaultSettings = {
+      volume: 0.2,
+      timer: true,
+      timerValue: 20,
+    };
+
     this.getData();
   }
 

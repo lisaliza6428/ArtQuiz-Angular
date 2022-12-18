@@ -1,8 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { QuestionService } from '../../../services/question.service';
-import { DataService } from '../../../services/data.service';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ModalActionsService } from '../../../services/modal-actions.service';
 import { DialogConfigConfirmModel } from '../../../../core/models/dialog-config';
 
@@ -13,19 +10,15 @@ import { DialogConfigConfirmModel } from '../../../../core/models/dialog-config'
 })
 export class ConfirmModalComponent {
   constructor(
-    public dialogRef: MatDialogRef<ConfirmModalComponent>,
     @Inject(MAT_DIALOG_DATA) public modalData: DialogConfigConfirmModel,
-    public router: Router,
-    public questionService: QuestionService,
-    public dataService: DataService,
-    public modalActionsService: ModalActionsService
+    private modalActionsService: ModalActionsService
   ) {}
 
-  action() {
+  public action() {
     this.modalActionsService.modalAction(this.modalData);
   }
 
-  cancelAction() {
+  public cancelAction() {
     this.modalActionsService.modalCancelAction(this.modalData);
   }
 }

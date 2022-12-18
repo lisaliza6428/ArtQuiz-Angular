@@ -11,32 +11,37 @@ import { ConfirmModalComponent } from '../../core/components/modals/confirm-moda
   styleUrls: ['./settings-page.component.scss'],
 })
 export class SettingsPageComponent implements OnInit {
-  volumeValue!: number;
+  private volumeValue: number;
 
-  timerValueStep = 5;
+  private timerValueStep: number;
 
-  minTimerValue = 5;
+  public minTimerValue: number;
 
-  maxTimerValue = 30;
+  public maxTimerValue: number;
 
   constructor(
     public dataService: DataService,
     public questionService: QuestionService,
-    public matDialog: MatDialog
-  ) {}
+    private matDialog: MatDialog
+  ) {
+    this.volumeValue = 0;
+    this.timerValueStep = 5;
+    this.minTimerValue = 5;
+    this.maxTimerValue = 30;
+  }
 
   ngOnInit(): void {
     this.volumeValue = this.dataService.getSettings().volume;
   }
 
-  handleVolumeChange(event: MatSliderChange) {
+  public handleVolumeChange(event: MatSliderChange): void {
     if (event.value != null) {
       this.dataService.updateSettings('volume', event.value);
       this.questionService.getSound('correct');
     }
   }
 
-  handleTimerChange(event: Event) {
+  public handleTimerChange(event: Event): void {
     const isChecked = (event.target as HTMLInputElement).checked;
     if (isChecked) {
       this.questionService.timerChange.next(true);
@@ -47,7 +52,7 @@ export class SettingsPageComponent implements OnInit {
     }
   }
 
-  minusButtonAction() {
+  public minusButtonAction(): void {
     let seconds = this.dataService.getSettings().timerValue;
     if (+seconds > this.minTimerValue) {
       seconds = +seconds - this.timerValueStep;
@@ -55,7 +60,7 @@ export class SettingsPageComponent implements OnInit {
     }
   }
 
-  plusButtonAction() {
+  public plusButtonAction(): void {
     let seconds = this.dataService.getSettings().timerValue;
     if (+seconds < this.maxTimerValue) {
       seconds = +seconds + this.timerValueStep;
@@ -63,12 +68,12 @@ export class SettingsPageComponent implements OnInit {
     }
   }
 
-  defaultButtonAction() {
+  public defaultButtonAction(): void {
     this.dataService.setDefaultSettings();
     this.questionService.timerChange.next(true);
   }
 
-  resetButtonAction() {
+  public resetButtonAction(): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.data = {

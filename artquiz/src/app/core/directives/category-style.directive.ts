@@ -1,18 +1,20 @@
 import { Directive, ElementRef, Input, Renderer2, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
-import { QUESTIONS_COUNT } from '../consts';
+import { QUESTIONS_COUNT } from '../shared/consts';
 
 @Directive({
   selector: '[appCategoryStyle]',
 })
 export class CategoryStyleDirective implements OnInit {
-  @Input('appCategoryStyle') imageNum!: number;
+  @Input('appCategoryStyle') public imageNum: number;
 
   constructor(
     private elementRef: ElementRef,
     private render: Renderer2,
     private dataService: DataService
-  ) {}
+  ) {
+    this.imageNum = 0;
+  }
 
   ngOnInit() {
     const answers = this.dataService.getAnswersArray();
